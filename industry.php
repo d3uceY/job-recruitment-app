@@ -1,4 +1,20 @@
 <?php
+/*
+ * Industry Category Management Page
+ * 
+ * This page provides an interface to manage industry categories including:
+ * - Adding new industry categories via a form
+ * - Displaying existing categories in a table
+ * - Editing categories through a modal popup
+ * - Deleting categories
+ * 
+ * The page includes:
+ * - Success/error message alerts
+ * - Loading spinner
+ * - Add industry form
+ * - Industry categories table with edit/delete actions
+ */
+
 include 'includes/db_con.php';
 include 'layout/header.php';
 ?>
@@ -22,7 +38,8 @@ include 'layout/header.php';
     ?>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Loading -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -74,8 +91,11 @@ include 'layout/header.php';
                                                 <tr>
                                                     <td><?php echo $row['category']; ?></td>
                                                     <td>
-                                                        <button class="btn btn-sm btn-primary" onclick="editIndustry('<?php echo $row['id']; ?>', '<?php echo $row['category']; ?>')">Edit</button>
-                                                        <a class="btn btn-sm btn-danger" href="controllers/delete_industry_controller.php?id=<?php echo $row['id']; ?>">Delete</a>
+                                                        <button type="button" class="btn btn-sm btn-primary"
+                                                            data-bs-toggle="modal" data-bs-target="#editIndustryModal"
+                                                            onclick="editIndustry('<?php echo $row['id']; ?>', '<?php echo $row['category']; ?>')">Edit</button>
+                                                        <a class="btn btn-sm btn-danger"
+                                                            href="controllers/delete_industry_controller.php?id=<?php echo $row['id']; ?>">Delete</a>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -84,48 +104,9 @@ include 'layout/header.php';
                                         ?>
                                     </tbody>
                                 </table>
+                                <!-- industry edit modal -->
+                                <?php include 'includes/industry_edit_modal.php'; ?>
 
-                                <!-- Edit Modal -->
-                                <div class="modal fade" id="editIndustryModal" tabindex="-1" aria-labelledby="editIndustryModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="editIndustryModalLabel">Edit Industry Category</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <form method="POST" action="controllers/edit_industry_controller.php">
-                                                <div class="modal-body">
-                                                    <input type="hidden" id="edit_id" name="id">
-                                                    <div class="mb-3">
-                                                        <label for="edit_name" class="form-label">Industry Category</label>
-                                                        <input type="text" class="form-control" id="edit_name" name="name">
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary" name="edit_industry">Save changes</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <script>
-                                    function editIndustry(id, name) {
-                                        document.getElementById('edit_id').value = id;
-                                        document.getElementById('edit_name').value = name;
-                                        var myModal = new bootstrap.Modal(document.getElementById('editIndustryModal'));
-                                        myModal.show();
-                                    }
-
-                                    // Handle modal cleanup
-                                    document.getElementById('editIndustryModal').addEventListener('hidden.bs.modal', function () {
-                                        document.querySelector('.modal-backdrop').remove();
-                                        document.body.classList.remove('modal-open');
-                                        document.body.style.overflow = '';
-                                        document.body.style.paddingRight = '';
-                                    });
-                                </script>
                             </div>
                         </div>
                     </div>
