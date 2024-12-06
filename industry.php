@@ -44,7 +44,7 @@ include 'layout/header.php';
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-
+        
         <?php include 'layout/sidebar.php'; ?>
 
         <div class="content">

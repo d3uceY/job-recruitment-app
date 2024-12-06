@@ -23,7 +23,11 @@
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
 
-<!-- JavaScript Libraries -->
+<!-- Quill CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
+
+<!-- Your other JavaScript libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="lib/chart/chart.min.js"></script>
@@ -36,6 +40,7 @@
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+
 </body>
 
 </html>
