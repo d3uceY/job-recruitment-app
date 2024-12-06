@@ -1,0 +1,138 @@
+<?php
+include 'includes/db_con.php';
+include 'layout/header.php';
+?>
+
+<body>
+    <?php
+    // Display success/error messages
+    if (isset($_GET['success'])) {
+        echo '<div class="alert alert-success alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x" style="z-index: 1050;" role="alert">
+            ' . $_GET['success'] . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+    }
+
+    if (isset($_GET['error'])) {
+        echo '<div class="alert alert-danger alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x" style="z-index: 1050;" role="alert">
+            ' . $_GET['error'] . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+    }
+    ?>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Loading -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+        <?php include 'layout/sidebar.php'; ?>
+
+        <div class="content">
+            <?php include 'layout/navbar.php'; ?>
+
+            <!-- Form Section -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Add Industry Category</h6>
+                            <form method="POST" action="controllers/add_industry_controller.php">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Industry Category</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                                <input type="submit" class="btn btn-primary" value="Add Industry" name="add_industry">
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Table Section -->
+                    <div class="col-12">
+                        <div class="bg-light rounded h-100 p-4">
+                            <h6 class="mb-4">Industry Categories</h6>
+                            <div class="table-responsive">
+                                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                    <thead>
+                                        <tr class="text-dark">
+                                            <th scope="col">Industry Category</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $query = "SELECT * FROM industry_category";
+                                        $result = mysqli_query($conn, $query);
+
+                                        if (!$result) {
+                                            die('Query Failed' . mysqli_error($conn));
+                                        } else {
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $row['category']; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-primary" onclick="editIndustry('<?php echo $row['id']; ?>', '<?php echo $row['category']; ?>')">Edit</button>
+                                                        <a class="btn btn-sm btn-danger" href="controllers/delete_industry_controller.php?id=<?php echo $row['id']; ?>">Delete</a>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+
+                                <!-- Edit Modal -->
+                                <div class="modal fade" id="editIndustryModal" tabindex="-1" aria-labelledby="editIndustryModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editIndustryModalLabel">Edit Industry Category</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form method="POST" action="controllers/edit_industry_controller.php">
+                                                <div class="modal-body">
+                                                    <input type="hidden" id="edit_id" name="id">
+                                                    <div class="mb-3">
+                                                        <label for="edit_name" class="form-label">Industry Category</label>
+                                                        <input type="text" class="form-control" id="edit_name" name="name">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary" name="edit_industry">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function editIndustry(id, name) {
+                                        document.getElementById('edit_id').value = id;
+                                        document.getElementById('edit_name').value = name;
+                                        var myModal = new bootstrap.Modal(document.getElementById('editIndustryModal'));
+                                        myModal.show();
+                                    }
+
+                                    // Handle modal cleanup
+                                    document.getElementById('editIndustryModal').addEventListener('hidden.bs.modal', function () {
+                                        document.querySelector('.modal-backdrop').remove();
+                                        document.body.classList.remove('modal-open');
+                                        document.body.style.overflow = '';
+                                        document.body.style.paddingRight = '';
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php include 'layout/footer.php'; ?>
+        </div>
+    </div>
+</body>
