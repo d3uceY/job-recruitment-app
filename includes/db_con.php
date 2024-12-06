@@ -3,7 +3,7 @@
 define('HOSTNAME', "localhost");
 define('USERNAME', "root");
 define('PASSWORD', "");
-define("DATABASE", "bank_it_career");
+define("DATABASE", "career_bank_it");
 
 // Create a connection to the database
 $conn = mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE);
