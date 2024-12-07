@@ -59,6 +59,9 @@ include 'layout/header.php';  // Page header template
                                     <label for="name" class="form-label">Educational Level</label>
                                     <input type="text" class="form-control" id="name" name="name">
                                 </div>
+                                <div class="mb-3">
+                                    <small class="text-muted">Example: "B.Sc", "HND", "NCE", "OND", "SSCE"</small>
+                                </div>
                                 <input type="submit" class="btn btn-primary" value="Add Level" name="add_level">
                             </form>
                         </div>

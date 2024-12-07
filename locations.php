@@ -62,6 +62,9 @@
                                     <label for="country" class="form-label">Country</label>
                                     <input type="text" class="form-control" id="country" name="country">
                                 </div>
+                                <div class="mb-3">
+                                    <small class="text-muted">Eg: "Lagos, Nigeria"</small>
+                                </div>
                                 <input type="submit" class="btn btn-primary" value="Add Location" name="add_location">
                             </form>
 

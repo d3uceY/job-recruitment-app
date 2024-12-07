@@ -1,7 +1,7 @@
-<?php 
+<?php
 // Include header template and database connection
-include 'layout/header.php'; 
-include 'includes/db_con.php'; 
+include 'layout/header.php';
+include 'includes/db_con.php';
 ?>
 
 <body>
@@ -24,7 +24,8 @@ include 'includes/db_con.php';
     ?>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Loading spinner shown while page loads -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -59,7 +60,9 @@ include 'includes/db_con.php';
                             <tbody>
                                 <?php
                                 // Query to fetch job listings with location details and calculate remaining days
-                                $query = "SELECT j.*, l.state, l.country,
+                                $query = "SELECT j.*, 
+                                          l.state,           
+                                          l.country,         
                                           DATEDIFF(j.duration, CURDATE()) as days_remaining 
                                           FROM job_openings j 
                                           LEFT JOIN locations l ON j.job_location = l.id";
@@ -76,7 +79,7 @@ include 'includes/db_con.php';
                                             <td><?php echo htmlspecialchars($row['job_title']); ?></td>
                                             <td><?php echo htmlspecialchars($row['state'] . ', ' . $row['country']); ?></td>
                                             <td>
-                                                <?php 
+                                                <?php
                                                 // Display remaining days or expired status
                                                 $days = $row['days_remaining'];
                                                 if ($days <= 0) {
@@ -88,9 +91,11 @@ include 'includes/db_con.php';
                                             </td>
                                             <td>
                                                 <!-- Edit and delete buttons with confirmation for delete -->
-                                                <a class="btn btn-sm btn-primary" href="edit-job.php?id=<?php echo $row['id']; ?>">Edit</a>
-                                                <a class="btn btn-sm btn-danger" href="controllers/delete_job_controller.php?id=<?php echo $row['id']; ?>" 
-                                                   onclick="return confirm('Are you sure you want to delete this job posting?');">Delete</a>
+                                                <a class="btn btn-sm btn-primary"
+                                                    href="edit-job.php?id=<?php echo $row['id']; ?>">Edit</a>
+                                                <a class="btn btn-sm btn-danger"
+                                                    href="controllers/delete_job_controller.php?id=<?php echo $row['id']; ?>"
+                                                    onclick="return confirm('Are you sure you want to delete this job posting?');">Delete</a>
                                             </td>
                                         </tr>
                                         <?php
