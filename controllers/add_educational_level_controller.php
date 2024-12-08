@@ -14,5 +14,5 @@ if(empty($name) || trim($name) == ''){
         header('location:../educational_level.php?success=Educational level added successfully');
         exit();
     }
-}
+} 
 ?>

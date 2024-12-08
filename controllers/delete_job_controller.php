@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        header("location: ../view_jobs.php?success=Job deleted successfully");
+        header("location: ../view_jobs.php?succ ess=Job deleted successfully");
         exit();
     } else {
         header("location: ../view_jobs.php?error=Failed to delete job");
