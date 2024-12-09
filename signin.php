@@ -1,8 +1,26 @@
 <?php include 'layout/header.php'; ?>
+
 <body>
+    <?php
+    if (isset($_GET['success'])) {
+        echo '<div class="alert alert-success alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x" style="z-index: 1050;" role="alert">
+            ' . $_GET['success'] . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+    }
+
+    if (isset($_GET['error'])) {
+        echo '<div class="alert alert-danger alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x" style="z-index: 1050;" role="alert">
+            ' . $_GET['error'] . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+    }
+    ?>
+
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -23,20 +41,22 @@
                         </div>
                         <form action="includes/signin.inc.php" method="POST">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
-                                <label for="floatingInput">Email address</label>
+                                <input type="text" class="form-control" id="floatingInput"
+                                    placeholder="name@example.com" name="username">
+                                <label for="floatingInput">Email/Username</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                                    name="password">
                                 <label for="floatingPassword">Password</label>
                             </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
+                            <!-- <div class="d-flex align-items-center justify-content-between mb-4">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember">
                                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                                 </div>
                                 <a href="">Forgot Password</a>
-                            </div>
+                            </div> -->
                             <button type="submit" class="btn btn-primary py-3 w-100 mb-4" name="signin">Sign In</button>
                             <p class="text-center mb-0">Don't have an Account? <a href="">Sign Up</a></p>
                         </form>
