@@ -105,14 +105,14 @@ function createUser($conn, $userName, $email, $password) {
 
 
 // Check if signin form fields are empty
-function emptyInputSignin($email, $password) {
+function emptyInputSignin($userName, $password) {
     $result = false;
-    if (empty($email) || empty($password)) {
+    if (empty($userName) || empty($password)) {
         $result = true;
     } else {
         $result = false;
     }
-
+    
     return $result;
 }
 

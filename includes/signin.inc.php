@@ -12,18 +12,19 @@
  */
 
 if (isset($_POST['signin'])) {
-    $userName = $_POST['email'];
+    $userName = $_POST['username'];
     $password = $_POST['password'];
 
     include("./db_con.php");
     include("./functions.inc.php");
 
-    if (emptyInputSignin($email, $password) !== false) {
+    if (emptyInputSignin($userName, $password) !== false) {
         header("location:../signin.php?error=fill all fields");
         exit();
     }
 
     loginUser($conn, $userName, $password);
+
 } else {
     header("location:../signin.php?error=something went wrong");
     exit();
