@@ -2,6 +2,7 @@
 // Include header template and database connection
 include 'layout/header.php';
 include 'includes/db_con.php';
+include 'includes/protect.inc.php';
 ?>
 
 <body>

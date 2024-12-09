@@ -11,7 +11,7 @@ if (isset($_POST['edit_job'])) {
     $summary = $_POST['summary'];
     $responsibility = $_POST['responsibilities'];
     $requirements = $_POST['requirements'];
-
+    
     // Prepare and execute update query
     $query = "UPDATE job_openings SET job_title=?, job_location=?, duration=?, job_summary=?, job_responsibility=?, job_requirements=? WHERE id=?";
     $stmt = $conn->prepare($query);

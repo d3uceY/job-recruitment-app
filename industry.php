@@ -17,6 +17,7 @@
 
 include 'includes/db_con.php';
 include 'layout/header.php';
+include 'includes/protect.inc.php';
 ?>
 
 <body>

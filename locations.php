@@ -1,5 +1,6 @@
 <?php include 'layout/header.php'; ?>
 <?php include 'includes/db_con.php'; ?>
+<?php include 'includes/protect.inc.php'; ?>
 <!-- 
     This file manages the locations functionality of the application.
     It provides a form to add new locations (state and country) and displays existing locations.

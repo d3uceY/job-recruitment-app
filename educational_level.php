@@ -11,6 +11,7 @@
 
 include 'includes/db_con.php'; // Database connection
 include 'layout/header.php';  // Page header template
+include 'includes/protect.inc.php';
 ?>
 
 <body>
