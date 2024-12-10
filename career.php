@@ -117,10 +117,10 @@ include("includes/db_con.php");
 
 
 
-            
+
             $result = mysqli_query($conn, $query);
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="job-listing d-flex justify-content-between align-items-center p-3">';
+                echo '<div class="job-listing rounded-3 d-flex justify-content-between align-items-center p-3">';
                 echo '<p class="job-title mb-0 text-capitalize">' . $row['job_title'] . '</p>';
                 echo '<p class="location mb-0 text-capitalize">' .
                     ($row['state'] ? $row['state'] . ', ' . $row['country'] : 'Location not found') .

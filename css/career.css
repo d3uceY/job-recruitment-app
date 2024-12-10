@@ -25,11 +25,13 @@ body{
     background-color: var(--tertiary-color);
     border: none;
     color: #fff;
+    border: 1px solid transparent;
 }
 
 .apply-btn:hover {
     background-color: var(--primary-color);
     color: var(--tertiary-color) !important;
+    border: 1px solid var(--tertiary-color);
 }
 
 
@@ -63,6 +65,16 @@ select option {
     font-size: 18px;
     color: #000;
     font-weight: 600;
+}
+
+.job-listing {
+    background-color: white;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.job-listing:hover {
+    background-color: var(--primary-color) !important;
 }
 
 .heading-container {
