@@ -1,5 +1,6 @@
 <?php include 'layout/header.php'; ?>
 <?php include 'includes/db_con.php'; ?>
+<?php include 'includes/protect.inc.php'; ?>
 
 <body>
     <?php
@@ -19,7 +20,8 @@
     ?>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -127,7 +129,7 @@
 
         // Handle form submission
         const form = document.getElementById('jobForm');
-        form.onsubmit = function() {
+        form.onsubmit = function () {
             // Update hidden fields with editor content
             document.getElementById('summary_content').value = summaryEditor.root.innerHTML;
             document.getElementById('responsibilities_content').value = responsibilitiesEditor.root.innerHTML;

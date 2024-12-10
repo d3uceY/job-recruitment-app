@@ -1,5 +1,8 @@
 /********** Template CSS **********/
 :root {
+    /* --primary: #009CFF;
+    --light: #F3F6F9;
+    --dark: #191C24; */
     --primary: #009CFF;
     --light: #F3F6F9;
     --dark: #191C24;
@@ -275,4 +278,3 @@
     background: var(--dark);
     border-color: var(--primary);
 }
-
