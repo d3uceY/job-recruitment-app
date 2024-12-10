@@ -27,4 +27,7 @@
 
     <!-- Career Stylesheet -->
     <link rel="stylesheet" href="css/career.css">
+
+    <!-- stylesheet for web application form -->
+    <link rel="stylesheet" href="css/style.css">
 </head>

@@ -125,7 +125,7 @@ include("includes/db_con.php");
                 echo '<p class="location mb-0 text-capitalize">' .
                     ($row['state'] ? $row['state'] . ', ' . $row['country'] : 'Location not found') .
                     '</p>';
-                echo '<button class="btn btn-primary text-white apply-btn">View/Apply</button>';
+                echo '<a class="btn btn-primary text-white apply-btn" href="application_form.php?job_id=' . $row['id'] . '">View/Apply</a>';
                 echo '</div>';
             }
 

@@ -4,14 +4,19 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: white;
+}
+
+body:has(.job-details) {
+    background-color: var(--primary-color);
 }
 
 :root {
     --primary-color: #D4DEF7;
-    --secondary-color: #062983  ;
+    --secondary-color: #062983;
     --tertiary-color: #38549C;
+    --text-color: #0E151D;
 }
 
 .wrapper {
@@ -82,17 +87,21 @@ select option {
     padding-bottom: 1rem;
 }
 
-.filter{
+.filter {
     background-color: var(--primary-color);
     margin-bottom: 5rem;
 }
 
-.job-title, .location{
+.job-title,
+.location {
     color: #000;
 }
 
 
-
+.days-left {
+    font-size: 15px !important;
+    display: inline-block;
+}
 
 
 
@@ -131,4 +140,38 @@ select option {
 .filter-label {
     font-size: 20px;
     color: #000;
+}
+
+.job-details {
+    background-color: white;
+    margin-bottom: 2rem;
+}
+
+.job-content {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.application-form-header h1 {
+    margin-bottom: 0;
+}
+
+.application-form-container {
+}
+
+.application-form-heading {
+    font-size: 24px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.form-floating > .form-control {
+    border: 1px solid #ced4da;
+}
+
+.form-floating > .form-control:focus {
+    border-color: var(--tertiary-color);
+    box-shadow: 0 0 0 0.25rem rgba(56, 84, 156, 0.25);
 }
