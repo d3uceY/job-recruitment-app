@@ -114,20 +114,25 @@ include("includes/db_con.php");
 
             // For debugging
             // echo $query; // Uncomment this line to see the actual query
-
+            
 
 
 
             $result = mysqli_query($conn, $query);
+            echo '<table class="table table-borderless">';
+            echo '<tbody>';
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="job-listing rounded-3 d-flex justify-content-between align-items-center p-3">';
-                echo '<p class="job-title mb-0 text-capitalize">' . $row['job_title'] . '</p>';
-                echo '<p class="location mb-0 text-capitalize">' .
+                echo '<tr>';
+                echo '<td class="text-capitalize">' . $row['job_title'] . '</td>';
+                echo '<td class="text-capitalize">' .
                     ($row['state'] ? $row['state'] . ', ' . $row['country'] : 'Location not found') .
-                    '</p>';
-                echo '<a class="btn btn-primary text-white apply-btn" href="application_form.php?job_id=' . $row['id'] . '">View/Apply</a>';
-                echo '</div>';
+                    '</td>';
+                echo '<td class="text-end">
+                <a class="btn btn-primary text-white apply-btn" href="application_form.php?job_id=' . $row['id'] . '">View/Apply</a></td>';
+                echo '</tr>';
             }
+            echo '</tbody>';
+            echo '</table>';
 
 
 
