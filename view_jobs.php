@@ -49,7 +49,7 @@ include 'includes/protect.inc.php';
                         <a href="add-jobs.php" class="btn btn-primary">Add New Job</a>
                     </div>
                     <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
                                     <th scope="col">Title</th>
@@ -113,4 +113,5 @@ include 'includes/protect.inc.php';
             <?php include 'layout/footer.php'; ?>
         </div>
     </div>
+
 </body>

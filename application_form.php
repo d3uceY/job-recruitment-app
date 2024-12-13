@@ -3,9 +3,9 @@
 include("includes/db_con.php");
 ?>
 
-<?php 
+<?php
 // Include header template
-include("layout/career_header.php"); 
+include("layout/career_header.php");
 ?>
 
 <?php
@@ -24,19 +24,22 @@ if (isset($_GET['job_id'])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
+} else {
+    header('location:career.php?status=error&message=' . urlencode('Invalid request method.'));
+    exit();
 }
 ?>
 
 <main>
     <div class="container">
-        <?php 
+        <?php
         // Show success/error message if status is set
         if (isset($_GET['status'])): ?>
             <div class="alert alert-<?php echo $_GET['status'] == 'success' ? 'success' : 'danger'; ?> mt-3">
                 <?php echo $_GET['status'] == 'success' ? 'Application submitted successfully!' : urldecode($_GET['message']); ?>
             </div>
         <?php endif; ?>
-        
+
         <!-- Job Title Header -->
         <div class="heading-container">
             <div class="application-form-header d-flex justify-content-between align-items-center">
@@ -81,7 +84,8 @@ if (isset($_GET['job_id'])) {
             <h2 class="application-form-heading mb-4">Apply for this job</h2>
 
             <div class="bg-white rounded-3 p-4">
-                <form id="jobApplication" action="controllers/application_form_controller.php" method="POST" enctype="multipart/form-data">
+                <form id="jobApplication" action="controllers/application_form_controller.php" method="POST"
+                    enctype="multipart/form-data">
                     <!-- Hidden Job ID -->
                     <input type="hidden" name="job_id" value="<?php echo $job_id; ?>">
 
@@ -108,8 +112,8 @@ if (isset($_GET['job_id'])) {
                         <!-- Email -->
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="email" name="email" 
-                                    placeholder="Email" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                    required>
                                 <label for="email">Email Address</label>
                             </div>
                         </div>
@@ -117,8 +121,8 @@ if (isset($_GET['job_id'])) {
                         <!-- Phone -->
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="tel" class="form-control" id="phone" name="phone" 
-                                    placeholder="Phone" required>
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone"
+                                    required>
                                 <label for="phone">Phone Number</label>
                             </div>
                         </div>
@@ -189,31 +193,82 @@ if (isset($_GET['job_id'])) {
                         <!-- Expected Salary -->
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="number" class="form-control" id="salary" name="salary" 
-                                    placeholder="Salary" required>
-                                <label for="salary">Expected Salary (PHP)</label>
+                                <input type="number" class="form-control" id="salary" name="salary" placeholder="Salary"
+                                    required>
+                                <label for="salary">Expected Salary (NGN)</label>
                             </div>
                         </div>
                     </div>
 
+
+                    <!-- Preferred Job Location -->
+                    <div class="col-md-12">
+                        <div class="form-floating mb-4">
+                            <select class="form-control" id="location" name="preferred_location" required>
+                                <option value="">Select preferred location</option>
+                                <option value="Abia">Abia</option>
+                                <option value="Adamawa">Adamawa</option>
+                                <option value="Akwa Ibom">Akwa Ibom</option>
+                                <option value="Anambra">Anambra</option>
+                                <option value="Bauchi">Bauchi</option>
+                                <option value="Bayelsa">Bayelsa</option>
+                                <option value="Benue">Benue</option>
+                                <option value="Borno">Borno</option>
+                                <option value="Cross River">Cross River</option>
+                                <option value="Delta">Delta</option>
+                                <option value="Ebonyi">Ebonyi</option>
+                                <option value="Edo">Edo</option>
+                                <option value="Ekiti">Ekiti</option>
+                                <option value="Enugu">Enugu</option>
+                                <option value="FCT">Federal Capital Territory</option>
+                                <option value="Gombe">Gombe</option>
+                                <option value="Imo">Imo</option>
+                                <option value="Jigawa">Jigawa</option>
+                                <option value="Kaduna">Kaduna</option>
+                                <option value="Kano">Kano</option>
+                                <option value="Katsina">Katsina</option>
+                                <option value="Kebbi">Kebbi</option>
+                                <option value="Kogi">Kogi</option>
+                                <option value="Kwara">Kwara</option>
+                                <option value="Lagos">Lagos</option>
+                                <option value="Nasarawa">Nasarawa</option>
+                                <option value="Niger">Niger</option>
+                                <option value="Ogun">Ogun</option>
+                                <option value="Ondo">Ondo</option>
+                                <option value="Osun">Osun</option>
+                                <option value="Oyo">Oyo</option>
+                                <option value="Plateau">Plateau</option>
+                                <option value="Rivers">Rivers</option>
+                                <option value="Sokoto">Sokoto</option>
+                                <option value="Taraba">Taraba</option>
+                                <option value="Yobe">Yobe</option>
+                                <option value="Zamfara">Zamfara</option>
+                            </select>
+                            <label for="location">Preferred Job Location</label>
+                        </div>
+                    </div>
+
+
+
                     <!-- Cover Letter Section -->
                     <div class="form-floating mb-4">
-                        <textarea class="form-control" id="coverLetter" name="coverLetter" 
-                            placeholder="Cover Letter" style="height: 200px" required></textarea>
+                        <textarea class="form-control" id="coverLetter" name="coverLetter" placeholder="Cover Letter"
+                            style="height: 200px" required></textarea>
                         <label for="coverLetter">Cover Letter</label>
                     </div>
-                                        
+
                     <!-- Resume Upload Section -->
                     <div class="mb-4">
                         <label for="resume" class="form-label">Upload Resume/CV</label>
-                        <input class="form-control" type="file" id="resume" name="resume" 
-                            accept=".pdf,.doc,.docx" required>
+                        <input class="form-control" type="file" id="resume" name="resume" accept=".pdf,.doc,.docx"
+                            required>
                         <div class="form-text">Accepted formats: PDF, DOC, DOCX. Max size: 2MB</div>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="text-end">
-                        <button type="submit" name="submit" class="btn btn-primary apply-btn">Submit Application</button>
+                        <button type="submit" name="submit" class="btn btn-primary apply-btn">Submit
+                            Application</button>
                     </div>
                 </form>
             </div>

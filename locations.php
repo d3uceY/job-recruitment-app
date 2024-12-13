@@ -54,7 +54,7 @@
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Add Location</h6>
 
-                            <form method="POST" action="controllers/add_location_controller.php">
+                            <form " method="POST" action="controllers/add_location_controller.php">
                                 <div class="mb-3">
                                     <label for="state" class="form-label">State</label>
                                     <input type="text" class="form-control" id="state" name="state">
@@ -76,7 +76,7 @@
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Locations</h6>
                             <div class="table-responsive">
-                                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0">
                                     <thead>
                                         <tr class="text-dark">
                                             <th scope="col">State</th>

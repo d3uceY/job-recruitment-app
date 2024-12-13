@@ -75,7 +75,7 @@ include 'includes/protect.inc.php';
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Industry Categories</h6>
                             <div class="table-responsive">
-                                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0">
                                     <thead>
                                         <tr class="text-dark">
                                             <th scope="col">Industry Category</th>

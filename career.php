@@ -12,6 +12,18 @@ include("includes/db_con.php");
 
 
 <main>
+
+    <?php
+    // Show success/error message if status is set
+    if (isset($_GET['status'])): ?>
+        <div class="alert alert-<?php echo $_GET['status'] == 'success' ? 'success' : 'danger'; ?> alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x"
+            style="z-index: 1050;" role="alert">
+            <?php echo $_GET['status'] == 'success' ? 'Application submitted successfully!' : urldecode($_GET['message']); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif;
+    ?>
+
     <div class="wrapper">
         <div class="heading-container">
             <h1 class=" text-uppercase">Career Opportunities</h1>
@@ -75,20 +87,6 @@ include("includes/db_con.php");
 
 
             <?php
-
-
-            // Get the location order from the URL parameter
-            // Initialize empty location filter
-            $locationFilter = "";
-
-            // Check if filter parameter exists in URL
-            if (isset($_GET['filter'])) {
-                // Only set location filter if not "locations" (all locations)
-                if ($_GET['filter'] != "locations") {
-                    $locationFilter = $_GET['filter'];
-                }
-            }
-
 
 
 

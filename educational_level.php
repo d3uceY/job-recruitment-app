@@ -72,11 +72,11 @@ include 'includes/protect.inc.php';
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Educational Levels</h6>
                             <div class="table-responsive">
-                                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                <table id="myTable" class="table text-start align-middle table-bordered table-hover mb-0">
                                     <thead>
                                         <tr class="text-dark">
                                             <th scope="col">Name</th>
-                                            <th scope="col">Actions</th>
+                                            <th scope="col" style="max-width: 200px">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>

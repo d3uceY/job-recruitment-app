@@ -1,5 +1,5 @@
 <?php
- session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -33,4 +33,6 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
 </head>
