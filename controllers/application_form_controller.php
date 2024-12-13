@@ -10,6 +10,8 @@ if (!isset($_POST['submit'])) {
 // Array to store validation errors 
 $errors = [];
 
+//application status
+$status = "New";
 
 
 
@@ -174,7 +176,6 @@ if (isset($_POST['submit'])) {
     $uploadDir = '../uploads/resumes/';
     $resumePath = '';
 
-
     if (isset($_FILES['resume']) && $_FILES['resume']['error'] === UPLOAD_ERR_OK) {
         // Generate unique filename for resume
         $fileExtension = pathinfo($_FILES['resume']['name'], PATHINFO_EXTENSION);
@@ -226,15 +227,15 @@ if (isset($_POST['submit'])) {
 
     // Prepare and execute database insert query
     $query = "INSERT INTO job_applications (job_id, first_name, last_name, email, phone, address, education, industry, 
-              experience, expected_salary, cover_letter, resume_path, application_date, preferred_location) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+              experience, expected_salary, cover_letter, resume_path, application_date, preferred_location, status) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?)";
 
 
 
     $stmt = $conn->prepare($query);
 
     $stmt->bind_param(
-        "isssssssidsss",
+        "isssssssidssss",
         $job_id,
         $firstName,
         $lastName,
@@ -247,7 +248,8 @@ if (isset($_POST['submit'])) {
         $salary,
         $coverLetter,
         $resumePath,
-        $preferred_location
+        $preferred_location,
+        $status
     );
 
 

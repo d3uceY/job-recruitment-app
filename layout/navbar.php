@@ -5,11 +5,11 @@
     <a href="#" class="sidebar-toggler flex-shrink-0">
         <i class="fa fa-bars"></i>
     </a>
-    <form class="d-none d-md-flex ms-4">
+    <!-- <form class="d-none d-md-flex ms-4">
         <input class="form-control border-0" type="search" placeholder="Search">
-    </form>
+    </form> -->
     <div class="navbar-nav align-items-center ms-auto">
-        <div class="nav-item dropdown">
+        <!-- <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <i class="fa fa-envelope me-lg-2"></i>
                 <span class="d-none d-lg-inline-flex">Message</span>
@@ -47,8 +47,8 @@
                 <hr class="dropdown-divider">
                 <a href="#" class="dropdown-item text-center">See all message</a>
             </div>
-        </div>
-        <div class="nav-item dropdown">
+        </div> -->
+        <!-- <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <i class="fa fa-bell me-lg-2"></i>
                 <span class="d-none d-lg-inline-flex">Notificatin</span>
@@ -71,15 +71,15 @@
                 <hr class="dropdown-divider">
                 <a href="#" class="dropdown-item text-center">See all notifications</a>
             </div>
-        </div>
+        </div> -->
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <?php
                 if (isset($_SESSION['userid'])) {
-                    echo "<img class='rounded-circle me-lg-2' src='img/user.jpg' alt='' style='width: 40px; height: 40px;'>";
+                    echo "<img class='rounded-circle me-lg-2' src='https://ui-avatars.com/api/?name=" . urlencode($_SESSION['username']) . "&background=random' alt='' style='width: 40px; height: 40px;'>";
                     echo "<span class='d-none d-lg-inline-flex'>" . $_SESSION['username'] . "</span>";
                 } else {
-                    echo "<img class='rounded-circle me-lg-2' src='img/user.jpg' alt='' style='width: 40px; height: 40px;'>";
+                    echo "<img class='rounded-circle me-lg-2' src='https://ui-avatars.com/api/?name=Guest&background=random' alt='' style='width: 40px; height: 40px;'>";
                     echo "<span class='d-none d-lg-inline-flex'>Guest</span>";
                 }
                 ?>

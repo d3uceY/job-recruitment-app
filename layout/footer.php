@@ -44,7 +44,8 @@
         $('#myTable').DataTable({
             responsive: true
         });
-    });</script>
+    });
+</script>
 
 
 <!-- DataTables JS -->
