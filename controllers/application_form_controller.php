@@ -13,10 +13,6 @@ $errors = [];
 //application status
 $status = "New";
 
-
-
-
-
 /**
  * Validates email address format
  * @param string $email Email address to validate

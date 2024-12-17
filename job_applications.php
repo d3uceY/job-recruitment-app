@@ -70,11 +70,28 @@ include 'includes/protect.inc.php';
                                         </tr>
                                     </thead>
                                     <tbody>
+
+
+
                                         <?php
                                         // Fetch and display job applications
-                                        $sql = "SELECT job_applications.*, job_openings.job_title FROM job_applications LEFT JOIN job_openings ON job_applications.job_id = job_openings.id";
+                                        $sql = "SELECT job_applications.*, 
+                                               job_openings.job_title 
+                                        FROM job_applications 
+                                        LEFT JOIN job_openings 
+                                            ON job_applications.job_id = job_openings.id";
+
                                         $result = mysqli_query($conn, $sql);
+
+
+
+
                                         while ($row = mysqli_fetch_assoc($result)) {
+
+
+
+
+                                            // Display the row data
                                             echo "<tr>";
                                             echo "<td>" . $row['first_name'] . "</td>";
                                             echo "<td>" . $row['last_name'] . "</td>";
@@ -86,13 +103,20 @@ include 'includes/protect.inc.php';
                                             echo "<td>" . $row['experience'] . "</td>";
                                             echo "<td>" . $row['preferred_location'] . "</td>";
                                             echo "<td>" . $row['status'] . "</td>";
+
+
+
+
+                                            // Display the manage button and view cv button
                                             echo "<td class=''>
-                                                <a href='manage_application.php?id=" . $row['id'] . "' class='btn btn-sm btn-primary'>Manage</a>
+                                                <a href='manage_job_applications.php?id=" . $row['id'] . "' class='btn btn-sm btn-primary'>Manage</a>
                                                 <a href='uploads/resumes/" . $row['resume_path'] . "' target='_blank' class='btn btn-sm btn-info'>View CV</a>
                                             </td>";
                                             echo "</tr>";
                                         }
                                         ?>
+
+
                                     </tbody>
                                 </table>
                             </div>
@@ -100,6 +124,11 @@ include 'includes/protect.inc.php';
                     </div>
                 </div>
             </div>
+
+
+
+
+
 
             <!-- Page footer -->
             <?php include 'layout/footer.php'; ?>

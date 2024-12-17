@@ -87,35 +87,66 @@ $query_applications_page_active = $current_page == 'query_applications.php';
             </a>
 
             <div class="nav-item dropdown" >
+
+
                 <a href="#" class="nav-link dropdown-toggle <?php echo $master_data_active ? "active show" : ''; ?>"
+
+
                     data-bs-toggle="dropdown">
                     <i class="fa fa-database me-2"></i>Master Data
                 </a>
+
+
                 <div class="dropdown-menu bg-transparent border-0 <?php echo $master_data_active ? "show" : ''; ?>" <?php echo $master_data_active ? "data-bs-popper='none'" : ''; ?>>
+
                     <a href="locations.php" class="dropdown-item <?php echo $locations_page_active ? 'active' : ''; ?>">Locations</a>
+
                     <a href="educational_level.php" class="dropdown-item <?php echo $educational_level_page_active ? 'active' : ''; ?>">Educational Levels</a>
+
                     <a href="industry.php" class="dropdown-item <?php echo $industry_page_active ? 'active' : ''; ?>">Industry Categories</a>
+
+
                 </div>
             </div>
 
             <div class="nav-item dropdown " >
+
+
                 <a href="#" class="nav-link dropdown-toggle <?php echo $job_openings_active ? 'active show' : ''; ?>"
+
+
                     data-bs-toggle="dropdown">
                     <i class="fa fa-briefcase me-2"></i>Job Openings
                 </a>
+
+
                 <div class="dropdown-menu bg-transparent border-0 <?php echo $job_openings_active ? "show" : ''; ?>" <?php echo $job_openings_active ? "data-bs-popper='none'" : ''; ?>>
+
                     <a href="view_jobs.php" class="dropdown-item <?php echo $view_jobs_page_active ? 'active' : ''; ?>">Job Openings</a>
+
                     <a href="add-jobs.php" class="dropdown-item <?php echo $add_jobs_page_active ? 'active' : ''; ?>">Add Job Opening</a>
+
+
                 </div>
             </div>
 
             <div class="nav-item dropdown">
+
+
                 <a href="#" class="nav-link dropdown-toggle <?php echo $applications_active ? 'active show' : ''; ?>" data-bs-toggle="dropdown">
+
+
                     <i class="fa fa-file-alt me-2"></i>Applications
                 </a>
+
+
                 <div class="dropdown-menu bg-transparent border-0 <?php echo $applications_active ? "show" : ''; ?>" <?php echo $applications_active ? "data-bs-popper='none'" : ''; ?>>
+
                     <a href="job_applications.php" class="dropdown-item <?php echo $job_applications_page_active ? 'active' : ''; ?>">Job Applications</a>
-                    <a href="query_applications.php" class="dropdown-item <?php echo $query_applications_page_active ? 'active' : ''; ?>">Query Job Applications</a>
+
+                 
+
+                    
                 </div>
             </div>
 
