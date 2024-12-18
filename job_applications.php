@@ -105,7 +105,7 @@ include 'includes/protect.inc.php';
                                             echo "<td>" . $row['education'] . "</td>";
                                             echo "<td>" . $row['experience'] . "</td>";
                                             echo "<td>" . $row['preferred_location'] . "</td>";
-                                            echo "<td class='" . $row['status'] . "</td>";
+                                            echo "<td class='text-center'>" . $row['status'] . "</td>";
 
 
 
