@@ -1,3 +1,17 @@
+<?php
+/**
+ * Sign In Page
+ * 
+ * This file provides a sign-in form for users to access the admin dashboard.
+ * It includes:
+ * - Form validation and processing
+ * - Success/error message handling through URL parameters
+ * - Database connectivity for user authentication
+ * 
+ * @author https://github.com/d3uceY
+ * 
+ */
+?>
 <?php include 'layout/header.php'; ?>
 
 <body>

@@ -1,5 +1,19 @@
 <?php
-// Include database connection
+/**
+ * Edit Job Page
+ * 
+ * This file provides a form interface for administrators to edit existing job postings.
+ * It includes:
+ * - Form validation and processing
+ * - Success/error message handling through URL parameters
+ * - Database connectivity for updating job listings
+ * - Protected access (requires authentication)
+ * - Responsive layout with sidebar navigation
+ * 
+ * @author https://github.com/d3uceY
+ * 
+ */
+
 include("includes/db_con.php");
 
 // Check if job ID is provided in URL

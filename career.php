@@ -1,8 +1,15 @@
 <?php
-// This file displays career opportunities and job listings
-// It includes a filter form to search jobs by location and sort order
-// The page layout includes a header, main content area with job listings,
-// and uses Bootstrap classes for styling and responsive design
+/**
+ * Career Page
+ * 
+ * This file displays career opportunities and job listings.
+ * It includes a filter form to search jobs by location and sort order.
+ * The page layout includes a header, main content area with job listings,
+ * and uses Bootstrap classes for styling and responsive design.
+ * 
+ * @author https://github.com/d3uceY
+ * 
+ */
 
 include("includes/db_con.php");
 ?>

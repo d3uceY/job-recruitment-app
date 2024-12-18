@@ -1,4 +1,20 @@
 <?php
+/**
+ * Sidebar Layout
+ * 
+ * This file defines the sidebar navigation for the application.
+ * It includes:
+ * - Master data pages
+ * - Job openings pages
+ * - Applications pages
+ * - Current page detection
+ * - Active class assignment for navigation items
+ * 
+ * @author https://github.com/d3uceY
+ * 
+ */
+
+
 // Get the current page file name
 $current_page = basename($_SERVER['PHP_SELF']);
 

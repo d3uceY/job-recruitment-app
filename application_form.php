@@ -1,5 +1,20 @@
 <?php
 // Include database connection
+/**
+ * Application Form Page
+ * 
+ * This file handles job application submissions and displays job details.
+ * It includes:
+ * - Job details display fetched from database
+ * - Application form interface
+ * - Form validation and processing
+ * - Success/error message handling through URL parameters
+ * - Database connectivity for storing applications
+ * 
+ * @author https://github.com/d3uceY
+ * 
+ */
+
 include("includes/db_con.php");
 ?>
 

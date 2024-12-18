@@ -13,6 +13,9 @@
  * - Loading spinner
  * - Add industry form
  * - Industry categories table with edit/delete actions
+ * 
+ * @author https://github.com/d3uceY
+ * 
  */
 
 include 'includes/db_con.php';

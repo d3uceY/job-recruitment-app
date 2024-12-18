@@ -1,4 +1,17 @@
 <?php
+/**
+ * Manage Job Applications Page
+ * 
+ * This file manages job applications and their display.
+ * It includes:
+ * - Displaying job application details
+ * - Updating application status
+ * - Deleting applications
+ * 
+ * @author https://github.com/d3uceY
+ * 
+ */
+
 include 'layout/header.php';
 include 'includes/db_con.php';
 include 'includes/protect.inc.php';

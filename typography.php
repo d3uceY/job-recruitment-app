@@ -1,3 +1,24 @@
+<?php
+/**
+ * Typography Page
+ * 
+ * This file provides a page with various typography examples and styles.
+ * It includes:
+ * - Background colors
+ * - Text colors
+ * - Headings
+ * - Display headings
+ * - Text elements
+ * - Blockquotes
+ * - Unstyled list
+ * - Description list
+ * - Basic list group
+ * - Flush list group
+ * 
+ * @author https://github.com/d3uceY
+ * 
+ */
+?>
 <?php include 'layout/header.php'; ?>
 
 <body>

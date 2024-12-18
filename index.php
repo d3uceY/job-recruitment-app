@@ -1,3 +1,16 @@
+<?php
+/**
+ * Index Page
+ * 
+ * This file is the main entry point for the admin dashboard.
+ * It includes:
+ * - Protected access (requires authentication)
+ * - Responsive layout with sidebar navigation
+ * 
+ * @author https://github.com/d3uceY
+ * 
+ */
+?>
 <?php include 'layout/header.php'; ?>
 <?php include 'includes/protect.inc.php'; ?>
 

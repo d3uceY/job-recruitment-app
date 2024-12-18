@@ -7,6 +7,9 @@
  * - Editing educational levels through a modal popup
  * - Deleting educational levels
  * Includes success/error alerts for user feedback
+ * 
+ * @author https://github.com/d3uceY
+ * 
  */
 
 include 'includes/db_con.php'; // Database connection

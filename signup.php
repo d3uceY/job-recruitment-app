@@ -1,3 +1,17 @@
+<?php
+/**
+ * Sign Up Page
+ * 
+ * This file provides a sign-up form for users to create an account.
+ * It includes:
+ * - Form validation and processing
+ * - Success/error message handling through URL parameters
+ * - Database connectivity for storing user information
+ * 
+ * @author https://github.com/d3uceY
+ * 
+ */
+?>
 <?php include 'layout/header.php'; ?>
 
 <body>

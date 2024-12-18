@@ -1,4 +1,19 @@
 <?php
+/**
+ * View Jobs Page
+ * 
+ * This file displays a table of all job listings for administrators to manage.
+ * It includes:
+ * - Protected access (requires authentication)
+ * - Success/error message handling through URL parameters
+ * - Responsive table layout with job listings
+ * - Actions to add, edit and delete jobs
+ * - Sidebar navigation and top navbar
+ * 
+ * @author https://github.com/d3uceY
+ * 
+ */
+
 // Include header template and database connection
 include 'layout/header.php';
 include 'includes/db_con.php';

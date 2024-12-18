@@ -1,15 +1,22 @@
+<?php
+/**
+ * Locations Page
+ * 
+ * This file manages the locations functionality of the application.
+ * It provides a form to add new locations (state and country) and displays existing locations.
+ * The file includes:
+ * - Form for adding new locations that submits to add_location_controller.php
+ * - Display of success/error messages via URL parameters
+ * - Integration with database through db_con.php
+ * - Full page layout with header, sidebar and navbar components
+ * 
+ * @author https://github.com/d3uceY
+ * 
+ */
+?>
 <?php include 'layout/header.php'; ?>
 <?php include 'includes/db_con.php'; ?>
 <?php include 'includes/protect.inc.php'; ?>
-<!-- 
-    This file manages the locations functionality of the application.
-    It provides a form to add new locations (state and country) and displays existing locations.
-    The file includes:
-    - Form for adding new locations that submits to add_location_controller.php
-    - Display of success/error messages via URL parameters
-    - Integration with database through db_con.php
-    - Full page layout with header, sidebar and navbar components
--->
 
 <body>
     <?php

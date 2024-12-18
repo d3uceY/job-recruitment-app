@@ -3,6 +3,9 @@
  * Job Applications Page
  * This page manages job applications and their display
  * Includes the standard layout components (header, sidebar, navbar)
+ * 
+ * @author https://github.com/d3uceY
+ * 
  */
 
 include 'includes/db_con.php'; // Database connection
@@ -102,7 +105,7 @@ include 'includes/protect.inc.php';
                                             echo "<td>" . $row['education'] . "</td>";
                                             echo "<td>" . $row['experience'] . "</td>";
                                             echo "<td>" . $row['preferred_location'] . "</td>";
-                                            echo "<td>" . $row['status'] . "</td>";
+                                            echo "<td class='" . $row['status'] . "</td>";
 
 
 
