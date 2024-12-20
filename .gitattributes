@@ -1,1 +1,6 @@
-*.* linguist-language=PHP
+# Show all languages but prioritize PHP
+*.php linguist-language=PHP
+*.js linguist-detectable=true
+*.css linguist-detectable=true
+*.html linguist-detectable=true
+*.sql linguist-detectable=true
