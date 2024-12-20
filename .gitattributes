@@ -1,1 +1,2 @@
-*.scss linguist-vendored
+*.scss linguist-detectable=true
+*.* linguist-language=PHP
