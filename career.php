@@ -23,6 +23,7 @@ include("includes/db_con.php");
     <?php
     // Show success/error message if status is set
     if (isset($_GET['status'])): ?>
+        <!-- Display alert message based on status parameter -->
         <div class="alert alert-<?php echo $_GET['status'] == 'success' ? 'success' : 'danger'; ?> alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x"
             style="z-index: 1050;" role="alert">
             <?php echo $_GET['status'] == 'success' ? 'Application submitted successfully!' : urldecode($_GET['message']); ?>
@@ -32,24 +33,26 @@ include("includes/db_con.php");
     ?>
 
     <div class="wrapper">
+        <!-- Main heading -->
         <div class="heading-container">
             <h1 class=" text-uppercase">Career Opportunities</h1>
         </div>
 
+        <!-- Filter form -->
         <form class="filter d-flex justify-content-between align-items-center py-4 px-3 rounded-3" method="GET">
             <p class="flex-1 mb-0 filter-label">Filter by:</p>
             <div class="d-flex justify-content-between  flex-2">
 
+                <!-- Location filter dropdown -->
                 <select name="filter" id="filter" class="filter-select">
                     <option value="locations">All Locations</option>
 
-
                     <?php
-                    // Fetch all locations from the database
+                    // Fetch all locations from the database and populate dropdown
                     $query = "SELECT * FROM locations";
                     $result = mysqli_query($conn, $query);
                     while ($row = mysqli_fetch_assoc($result)) {
-
+                        // Mark currently selected location
                         $selected = '';
                         if (isset($_GET['filter']) && $_GET['filter'] == $row['id']) {
                             $selected = 'selected';
@@ -59,13 +62,12 @@ include("includes/db_con.php");
                     }
                     ?>
 
-
                 </select>
+
+                <!-- Sort order dropdown -->
                 <select name="sort" id="sort" class="filter-select">
-
-
                     <?php
-                    // Function to check if a sort option should be selected based on URL parameter
+                    // Helper function to check if sort option should be selected
                     function get_sort_option($sort_value)
                     {
                         if (isset($_GET['sort']) && $_GET['sort'] === $sort_value) {
@@ -75,7 +77,6 @@ include("includes/db_con.php");
                     }
                     ?>
 
-
                     <option value="DESC" <?php echo get_sort_option('DESC') ?>>DESC</option>
                     <option value="ASC" <?php echo get_sort_option('ASC') ?>>ASC</option>
 
@@ -84,20 +85,14 @@ include("includes/db_con.php");
             </div>
         </form>
 
+        <!-- Job listings section -->
         <h2 class="job-listings-heading mb-3">
             Job listings
         </h2>
 
         <div class="job-listings-container">
-
-
-
-
             <?php
-
-
-
-            // Build the base query
+            // Build base query to get job openings with location details
             $query = "SELECT 
                 job_openings.*, 
                 locations.state, 
@@ -105,24 +100,19 @@ include("includes/db_con.php");
             FROM job_openings 
             LEFT JOIN locations ON job_openings.job_location = locations.id";
 
-
-
-            // Add location filter if specified
+            // Add location filter if specified in URL parameters
             if (isset($_GET['filter']) && $_GET['filter'] != "locations") {
                 $query .= " WHERE locations.id = " . mysqli_real_escape_string($conn, $_GET['filter']);
             }
 
-
-            // Add sorting (with default DESC if not specified)
+            // Add sort order (default to DESC if not specified)
             $order = isset($_GET['sort']) ? mysqli_real_escape_string($conn, $_GET['sort']) : 'DESC';
             $query .= " ORDER BY job_openings.job_title " . $order;
 
-            // For debugging
+            // For debugging purposes
             // echo $query; // Uncomment this line to see the actual query
             
-
-
-
+            // Execute query and display results in table format
             $result = mysqli_query($conn, $query);
             echo '<table class="table table-borderless">';
             echo '<tbody>';
@@ -138,12 +128,7 @@ include("includes/db_con.php");
             }
             echo '</tbody>';
             echo '</table>';
-
-
-
-
             ?>
-
         </div>
     </div>
 </main>

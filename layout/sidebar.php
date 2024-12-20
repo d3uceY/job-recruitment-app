@@ -68,7 +68,7 @@ $job_applications_page_active = $current_page == 'job_applications.php';
 
 $query_applications_page_active = $current_page == 'query_applications.php';
 
-
+$dashboard_page_active = $current_page == 'index.php';
 ?>
 
 <div class="sidebar pe-4 pb-3">
@@ -98,7 +98,7 @@ $query_applications_page_active = $current_page == 'query_applications.php';
         </div> -->
 
         <div class="navbar-nav w-100">
-            <a href="index.php" class="nav-item nav-link">
+            <a href="index.php" class="nav-item nav-link <?php echo $dashboard_page_active ? 'active' : ''; ?>">
                 <i class="fa fa-tachometer-alt me-2"></i>Dashboard
             </a>
 
