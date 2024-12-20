@@ -1,5 +1,7 @@
-# Show all languages but prioritize PHP
+# Prioritize PHP as the primary language
 *.php linguist-language=PHP
+
+# Ensure these files are detectable for language statistics
 *.js linguist-detectable=true
 *.css linguist-detectable=true
 *.html linguist-detectable=true
