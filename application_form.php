@@ -23,6 +23,47 @@ include("includes/db_con.php");
 include("layout/career_header.php");
 ?>
 
+
+<?php
+
+// Initialize variables with default values
+$text_color = null;
+$bg_color = null;
+$bg_color_2 = null;
+$text_color_2 = null;
+$btn_text_color = null;
+$btn_color = null;
+
+
+
+// query string template for customization
+if (isset($_GET['text_color'])) {
+    $text_color = $_GET['text_color'];
+}
+
+if (isset($_GET['bg_color'])) {
+    $bg_color = $_GET['bg_color'];
+}
+
+if (isset($_GET['bg_color_2'])) {
+    $bg_color_2 = $_GET['bg_color_2'];
+}
+
+if (isset($_GET['text_color_2'])) {
+    $text_color_2 = $_GET['text_color_2'];
+}
+
+if (isset($_GET['btn_text_color'])) {
+    $btn_text_color = $_GET['btn_text_color'];
+}
+
+if (isset($_GET['btn_color'])) {
+    $btn_color = $_GET['btn_color'];
+}
+?>
+
+
+
 <?php
 // Fetch job details from the database if job_id is set
 if (isset($_GET['job_id'])) {
@@ -45,60 +86,106 @@ if (isset($_GET['job_id'])) {
 }
 ?>
 
-<main>
+<style>
+    .bg_color {
+        background-color:
+            <?= $bg_color; ?>
+            !important;
+    }
+
+    .text_color {
+        color:
+            <?= $text_color; ?>
+            !important;
+    }
+
+    .bg_color_2 {
+        background-color:
+            <?= $bg_color_2; ?>
+            !important;
+    }
+
+    .text_color_2, .text_color_2 * {
+        color:
+            <?= $text_color_2; ?>
+            !important;
+    }
+
+    .btn_color {
+        background-color:
+            <?= $btn_color; ?>
+            !important;
+        color:
+            <?= $btn_text_color; ?>
+            !important;
+    }
+
+    .btn_color_2 {
+        background-color:
+            <?= $btn_color_2; ?>
+            !important;
+        color:
+            <?= $btn_text_color_2; ?>
+            !important;
+    }
+</style>
+
+
+
+<main class="bg_color">
     <div class="container">
         <?php
         // Show success/error message if status is set
         if (isset($_GET['status'])): ?>
             <div class="alert alert-<?php echo $_GET['status'] == 'success' ? 'success' : 'danger'; ?> mt-3">
                 <?php echo $_GET['status'] == 'success' ? 'Application submitted successfully!' : urldecode($_GET['message']); ?>
-            </div>
+            </div>  
         <?php endif; ?>
 
         <!-- Job Title Header -->
         <div class="heading-container">
             <div class="application-form-header d-flex justify-content-between align-items-center">
-                <h1 class="text-uppercase"><?php echo $row['job_title']; ?></h1>
-                <a href="#apply" class="btn btn-primary text-white apply-btn">APPLY</a>
+                <h1 class="text-uppercase text_color"><?php echo $row['job_title']; ?></h1>
+                <a href="#apply" class="btn btn-primary text-white apply-btn btn_color text_color">APPLY</a>
             </div>
         </div>
 
         <!-- Job Details Section -->
-        <div class="job-details rounded-3 p-4">
+        <div class="job-details rounded-3 p-4 bg_color_2">
             <?php
             // Space for additional PHP code if needed
             ?>
-            <h2 class="job-listings-heading mb-3">Application Deadline:
+            <h2 class="job-listings-heading mb-3 text_color_2">Application Deadline:
                 <?php echo $row['formatted_date']; ?>
-                <div class="days-left">
+                <div class="days-left text_color">
                     <?php echo '(<span class="text-danger">' . $row['days_left'] . '</span> days left)' ?>
                 </div>
             </h2>
 
             <!-- Job Summary -->
             <div class="mb-4">
-                <h3 class="filter-label">Job Summary</h3>
-                <div class="job-content"><?php echo $row['job_summary']; ?></div>
+                <h3 class="filter-label text_color">Job Summary</h3>
+                <div class="job-content text_color_2"><?php echo $row['job_summary']; ?></div>
             </div>
 
             <!-- Job Responsibilities -->
             <div class="mb-4">
-                <h3 class="filter-label">Responsibilities</h3>
-                <div class="job-content"><?php echo $row['job_responsibility']; ?></div>
+                <h3 class="filter-label text_color">Responsibilities</h3>
+                <div class="job-content text_color_2"><?php echo $row['job_responsibility']; ?></div>
             </div>
 
             <!-- Job Requirements -->
             <div class="mb-4">
-                <h3 class="filter-label">Job Requirement</h3>
-                <div class="job-content"><?php echo $row['job_requirements']; ?></div>
+                <h3 class="filter-label text_color">Job Requirement</h3>
+                <div class="job-content text_color_2"><?php echo $row['job_requirements']; ?></div>
             </div>
         </div>
 
         <!-- Application Form Section -->
         <div class="application-form-container">
-            <h2 class="application-form-heading mb-4">Apply for this job</h2>
+            <h2 class="application-form-heading mb-4 text_color">Apply for this job</h2>
 
-            <div class="bg-white rounded-3 p-4">
+            <div class="bg-white rounded-3 p-4  bg_color_2">
                 <form id="jobApplication" action="controllers/application_form_controller.php" method="POST"
                     enctype="multipart/form-data">
                     <!-- Hidden Job ID -->
@@ -282,7 +369,7 @@ if (isset($_GET['job_id'])) {
 
                     <!-- Submit Button -->
                     <div class="text-end">
-                        <button type="submit" name="submit" class="btn btn-primary apply-btn">Submit
+                        <button type="submit" name="submit" class="btn btn-primary apply-btn btn_color ">Submit
                             Application</button>
                     </div>
                 </form>

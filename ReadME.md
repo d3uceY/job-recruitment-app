@@ -141,6 +141,18 @@ The application uses MySQL with the following key tables:
 
 
 
+### Customization
+these are the url query parameters that are used to customize the application:
+- `text_color` - Text color
+- `btn_color` - Button color
+- `btn_text_color` - Button text color
+- `bg_color` - Background color
+- `bg_color_2` - Secondary background color
+- `text_color_2` - Secondary text color
+
+example usage:  ```http://url/career.php?text_color=%23F4A261&bg_color=%23264553&bg_color_2=%232A9D8F&text_color_2=%23E76F51&btn_text_color=%23FFFFFF&btn_color=%231D3557&filter=locations&sort=ASC```
+you have to encode the color values with `%23` to use them in the url
+
 ### Author & Credits
 
 This project was developed by [d3uceY](https://github.com/d3uceY). If you use or modify this project, please provide appropriate credit and attribution to the original author.

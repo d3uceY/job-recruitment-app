@@ -83,12 +83,21 @@ if (isset($_GET['btn_color'])) {
             <!-- Filter form -->
             <form class="filter d-flex justify-content-between align-items-center py-4 px-3 rounded-3" method="GET"
                 <?= $bg_color_2 ? "style='background-color: {$bg_color_2} !important'" : '' ?>>
+
                 <p class="flex-1 mb-0 filter-label" <?= $text_color ? "style='color: {$text_color} !important'" : '' ?>>
                     Filter by:</p>
+
                 <div class="d-flex justify-content-between  flex-2">
+                    <!-- hidden inputs holding customization values -->
+                    <input type="hidden" name="text_color" value="<?= $text_color ?>">
+                    <input type="hidden" name="bg_color" value="<?= $bg_color ?>">
+                    <input type="hidden" name="bg_color_2" value="<?= $bg_color_2 ?>">
+                    <input type="hidden" name="text_color_2" value="<?= $text_color_2 ?>">
+                    <input type="hidden" name="btn_text_color" value="<?= $btn_text_color ?>">
+                    <input type="hidden" name="btn_color" value="<?= $btn_color ?>">
 
                     <!-- Location filter dropdown -->
-                    <select name="filter" id="filter" class="filter-select" <?= $text_color ? "style='color: {$text_color} !important'" : '' ?>>
+                    <select name="filter" id="filter" class="filter-select" <?= $text_color || $bg_color_2 ? "style='color: {$text_color} !important; background-color: {$bg_color_2} !important'" : '' ?>>
                         <option value="locations">All
                             Locations
                         </option>
@@ -98,6 +107,8 @@ if (isset($_GET['btn_color'])) {
                         $query = "SELECT * FROM locations";
                         $result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_assoc($result)) {
+
+
                             // Mark currently selected location
                             $selected = '';
                             if (isset($_GET['filter']) && $_GET['filter'] == $row['id']) {
@@ -105,13 +116,15 @@ if (isset($_GET['btn_color'])) {
                             }
 
                             echo '<option value="' . $row['id'] . '" ' . $selected . '>' . $row['state'] . '</option>';
+
+                            
                         }
                         ?>
 
                     </select>
 
                     <!-- Sort order dropdown -->
-                    <select name="sort" id="sort" class="filter-select" <?= $text_color ? "style='color: {$text_color} !important'" : '' ?>>
+                    <select name="sort" id="sort" class="filter-select" <?= $text_color || $bg_color_2 ? "style='color: {$text_color} !important; background-color: {$bg_color_2} !important'" : '' ?>>
                         <?php
                         // Helper function to check if sort option should be selected
                         function get_sort_option($sort_value)
@@ -137,6 +150,9 @@ if (isset($_GET['btn_color'])) {
             </h2>
 
             <div class="job-listings-container">
+
+
+
                 <?php
                 // Build base query to get job openings with location details
                 $query = "SELECT 
@@ -146,23 +162,33 @@ if (isset($_GET['btn_color'])) {
                 FROM job_openings 
                 LEFT JOIN locations ON job_openings.job_location = locations.id";
 
+
+
                 // Add location filter if specified in URL parameters
                 if (isset($_GET['filter']) && $_GET['filter'] != "locations") {
                     $query .= " WHERE locations.id = " . mysqli_real_escape_string($conn, $_GET['filter']);
                 }
 
+
+
                 // Add sort order (default to DESC if not specified)
                 $order = isset($_GET['sort']) ? mysqli_real_escape_string($conn, $_GET['sort']) : 'DESC';
                 $query .= " ORDER BY job_openings.job_title " . $order;
 
-                // For debugging purposes
-                // echo $query; // Uncomment this line to see the actual query
+
+
+
                 
+
+
+
                 // Execute query and display results in table format
                 $result = mysqli_query($conn, $query);
                 echo '<table class="table table-borderless">';
                 echo '<tbody>';
                 while ($row = mysqli_fetch_assoc($result)) {
+
+
                     echo '<tr>';
                     echo '<td class="text-capitalize" ' . ($text_color_2 ? "style='color: {$text_color_2} !important'" : '') . '>' . $row['job_title'] . '</td>';
                     echo '<td class="text-capitalize" ' . ($text_color_2 ? "style='color: {$text_color_2} !important'" : '') . '>' .
@@ -170,7 +196,15 @@ if (isset($_GET['btn_color'])) {
                         '</td>';
                     echo '<td class="text-end">
 
-                    <a class="btn btn-primary text-white apply-btn" href="application_form.php?job_id=' . $row['id'] . '&text_color=' . $text_color . '&bg_color=' . $bg_color . '&bg_color_2=' . $bg_color_2 . '&text_color_2=' . $text_color_2 . '&btn_text_color=' . $btn_text_color . '&btn_color=' . $btn_color . '" ' . ($btn_text_color || $btn_color ? "style='background-color: {$btn_color} !important; color: {$btn_text_color} !important'" : '') . '>View/Apply</a></td>';
+
+
+                    <a class="btn btn-primary text-white apply-btn" href="application_form.php?job_id=' . $row['id'] .
+                        '&text_color=' . urlencode($text_color) .
+                        '&bg_color=' . urlencode($bg_color) .
+                        '&bg_color_2=' . urlencode($bg_color_2) .
+                        '&text_color_2=' . urlencode($text_color_2) .
+                        '&btn_text_color=' . urlencode($btn_text_color) .
+                        '&btn_color=' . urlencode($btn_color) . '" ' . ($btn_text_color || $btn_color ? "style='background-color: {$btn_color} !important; color: {$btn_text_color} !important'" : '') . '>View/Apply</a></td>';
                     echo '</tr>';
                 }
                 echo '</tbody>';
