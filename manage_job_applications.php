@@ -19,10 +19,22 @@ include 'includes/protect.inc.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $query = "SELECT ja.*, jo.job_title 
-              FROM job_applications ja 
-              LEFT JOIN job_openings jo ON ja.job_id = jo.id 
-              WHERE ja.id = ?";
+    $query =
+        "SELECT 
+    ja.*, jo.job_title , r.referral
+              FROM 
+              job_applications ja 
+              LEFT JOIN
+               job_openings jo 
+               ON 
+               ja.job_id = jo.id 
+               LEFT JOIN
+               referrals r 
+               ON
+               ja.referral_id = r.id
+              WHERE 
+              ja.id = ?";
+
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -123,25 +135,26 @@ if (isset($_GET['id'])) {
                                     </div>
 
                                     <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label">Expected Salary</label>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Expected Salary (NGN)</label>
                                             <input type="text" class="form-control"
-                                                value="<?php echo htmlspecialchars($application['expected_salary']); ?>"
+                                                value="&#x20A6;<?php echo htmlspecialchars($application['expected_salary']); ?>"
                                                 readonly>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="form-label">Preferred Location</label>
                                             <input type="text" class="form-control"
                                                 value="<?php echo htmlspecialchars($application['preferred_location']); ?>"
                                                 readonly>
                                         </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Referral</label>
+                                            <input type="text" class="form-control"
+                                                value="<?php echo htmlspecialchars($application['referral']); ?>" readonly>
+                                        </div>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label class="form-label">Cover Letter</label>
-                                        <textarea class="form-control" rows="4"
-                                            readonly><?php echo htmlspecialchars($application['cover_letter']); ?></textarea>
-                                    </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Status</label>

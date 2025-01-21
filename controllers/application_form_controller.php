@@ -287,7 +287,7 @@ if (isset($_POST['submit'])) {
     $stmt = $conn->prepare($query);
 
     $stmt->bind_param(
-        "isssssssidssssi",  // 15 parameters (i=int, s=string, d=decimal)
+        "isssssssidsssss",  // 15 parameters (i=int, s=string, d=decimal)
         $job_id,            // i
         $firstName,         // s
         $lastName,         // s
@@ -309,7 +309,7 @@ if (isset($_POST['submit'])) {
 
     // Execute query and handle result
     if ($stmt->execute()) {
-        header('location:../career.php?status=success&message= ' . $referral . '. ');
+        header('location:../career.php?status=success&message= ' . $coverLetterPath . '. ');
         exit();
     } else {
         header('location:../career.php?status=error&message=' . urlencode('Failed to submit application: ' . $conn->error));
