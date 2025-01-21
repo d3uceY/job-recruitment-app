@@ -82,6 +82,7 @@ include 'includes/protect.inc.php';
                                           DATEDIFF(j.duration, CURDATE()) as days_remaining 
                                           FROM job_openings j 
                                           LEFT JOIN locations l ON j.job_location = l.id";
+                                          
                                 $result = mysqli_query($conn, $query);
 
                                 // Check if query executed successfully

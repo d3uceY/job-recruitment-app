@@ -92,7 +92,22 @@ include 'includes/protect.inc.php';
                                         while ($row = mysqli_fetch_assoc($result)) {
 
 
-
+                                            function statusLabel($status)
+                                            {
+                                                if ($status == 'PENDING') {
+                                                    return '<span class="badge bg-warning">' . $status . '</span>';
+                                                } elseif ($status == 'HIRED') {
+                                                    return '<span class="badge bg-success">' . $status . '</span>';
+                                                } elseif ($status == 'REJECTED') {
+                                                    return '<span class="badge bg-danger">' . $status . '</span>';
+                                                } elseif ($status == 'OPENED') {
+                                                    return '<span class="badge bg-info">' . $status . '</span>';
+                                                } elseif ($status == 'SHORTLISTED') {
+                                                    return '<span class="badge bg-primary">' . $status . '</span>';
+                                                } else {
+                                                    return '<span class="badge bg-secondary">' . $status . '</span>';
+                                                }
+                                            }
 
                                             // Display the row data
                                             echo "<tr>";
@@ -105,7 +120,7 @@ include 'includes/protect.inc.php';
                                             echo "<td>" . $row['education'] . "</td>";
                                             echo "<td>" . $row['experience'] . "</td>";
                                             echo "<td>" . $row['preferred_location'] . "</td>";
-                                            echo "<td class='text-center'>" . $row['status'] . "</td>";
+                                            echo "<td class='text-center'>" . statusLabel($row['status']) . "</td>";
 
 
 

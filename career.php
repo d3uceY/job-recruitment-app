@@ -25,6 +25,7 @@ include("includes/db_con.php");
 $text_color = null;
 $bg_color = null;
 $bg_color_2 = null;
+$bg_color_3 = null;
 $text_color_2 = null;
 $btn_text_color = null;
 $btn_color = null;
@@ -54,6 +55,11 @@ if (isset($_GET['btn_text_color'])) {
 if (isset($_GET['btn_color'])) {
     $btn_color = $_GET['btn_color'];
 }
+
+if (isset($_GET['bg_color_3'])) {
+    $bg_color_3 = $_GET['bg_color_3'];
+}
+
 ?>
 
 
@@ -95,6 +101,7 @@ if (isset($_GET['btn_color'])) {
                     <input type="hidden" name="text_color_2" value="<?= $text_color_2 ?>">
                     <input type="hidden" name="btn_text_color" value="<?= $btn_text_color ?>">
                     <input type="hidden" name="btn_color" value="<?= $btn_color ?>">
+                    <input type="hidden" name="bg_color_3" value="<?= $bg_color_3 ?>">
 
                     <!-- Location filter dropdown -->
                     <select name="filter" id="filter" class="filter-select" <?= $text_color || $bg_color_2 ? "style='color: {$text_color} !important; background-color: {$bg_color_2} !important'" : '' ?>>
@@ -117,7 +124,7 @@ if (isset($_GET['btn_color'])) {
 
                             echo '<option value="' . $row['id'] . '" ' . $selected . '>' . $row['state'] . '</option>';
 
-                            
+
                         }
                         ?>
 
@@ -155,12 +162,19 @@ if (isset($_GET['btn_color'])) {
 
                 <?php
                 // Build base query to get job openings with location details
-                $query = "SELECT 
+                //and render the only ones that are not expired
+                $query =
+                    "SELECT 
                     job_openings.*, 
                     locations.state, 
-                    locations.country 
-                FROM job_openings 
-                LEFT JOIN locations ON job_openings.job_location = locations.id";
+                    locations.country,
+                    DATEDIFF(job_openings.duration, CURDATE()) as days_remaining 
+                FROM
+                 job_openings 
+                LEFT JOIN 
+                locations 
+                ON 
+                job_openings.job_location = locations.id";
 
 
 
@@ -178,37 +192,50 @@ if (isset($_GET['btn_color'])) {
 
 
 
-                
 
-
-
-                // Execute query and display results in table format
+                // Execute query 
                 $result = mysqli_query($conn, $query);
-                echo '<table class="table table-borderless">';
-                echo '<tbody>';
-                while ($row = mysqli_fetch_assoc($result)) {
 
 
-                    echo '<tr>';
-                    echo '<td class="text-capitalize" ' . ($text_color_2 ? "style='color: {$text_color_2} !important'" : '') . '>' . $row['job_title'] . '</td>';
-                    echo '<td class="text-capitalize" ' . ($text_color_2 ? "style='color: {$text_color_2} !important'" : '') . '>' .
-                        ($row['state'] ? $row['state'] . ', ' . $row['country'] : 'Location not found') .
-                        '</td>';
-                    echo '<td class="text-end">
+                //if job openings found
+                if (mysqli_num_rows($result) > 0) {
+                    echo '<table class="table table-borderless">';
+                    echo '<tbody>';
+                    while ($row = mysqli_fetch_assoc($result)) {
+
+                        // Check if job opening is expired
+                        if ($row['days_remaining'] < 0) {
+                            continue;
+                        }
+
+                        echo '<tr>';
+                        echo '<td class="text-capitalize" ' . ($text_color_2 ? "style='color: {$text_color_2} !important'" : '') . '>' . $row['job_title'] . '</td>';
+                        echo '<td class="text-capitalize" ' . ($text_color_2 ? "style='color: {$text_color_2} !important'" : '') . '>' .
+                            ($row['state'] ? $row['state'] . ', ' . $row['country'] : 'Location not found') .
+                            '</td>';
+                        echo '<td class="text-end">
 
 
 
                     <a class="btn btn-primary text-white apply-btn" href="application_form.php?job_id=' . $row['id'] .
-                        '&text_color=' . urlencode($text_color) .
-                        '&bg_color=' . urlencode($bg_color) .
-                        '&bg_color_2=' . urlencode($bg_color_2) .
-                        '&text_color_2=' . urlencode($text_color_2) .
-                        '&btn_text_color=' . urlencode($btn_text_color) .
-                        '&btn_color=' . urlencode($btn_color) . '" ' . ($btn_text_color || $btn_color ? "style='background-color: {$btn_color} !important; color: {$btn_text_color} !important'" : '') . '>View/Apply</a></td>';
-                    echo '</tr>';
+                            (isset($text_color) ? '&text_color=' . urlencode($text_color) : '') .
+                            (isset($bg_color) ? '&bg_color=' . urlencode($bg_color) : '') .
+                            (isset($bg_color_2) ? '&bg_color_2=' . urlencode($bg_color_2) : '') .
+                            (isset($text_color_2) ? '&text_color_2=' . urlencode($text_color_2) : '') .
+                            (isset($bg_color_3) ? '&bg_color_3=' . urlencode($bg_color_3) : '') .
+                            (isset($btn_text_color) ? '&btn_text_color=' . urlencode($btn_text_color) : '') .
+                            '&btn_color=' . urlencode($btn_color) . '" ' . ($btn_text_color || $btn_color ? "style='background-color: {$btn_color} !important; color: {$btn_text_color} !important'" : '') . '>View/Apply</a></td>';
+                        echo '</tr>';
+                    }
+                    echo '</tbody>';
+                    echo '</table>';
+                } else {
+                    //display message if no job openings found
+                    echo '<p class="text-center" ' . ($text_color ? "style='color: {$text_color} !important'" : '') . '>No job openings found.</p>';
                 }
-                echo '</tbody>';
-                echo '</table>';
+
+
+
                 ?>
             </div>
         </div>

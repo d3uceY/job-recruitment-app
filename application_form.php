@@ -30,6 +30,7 @@ include("layout/career_header.php");
 $text_color = null;
 $bg_color = null;
 $bg_color_2 = null;
+$bg_color_3 = null;
 $text_color_2 = null;
 $btn_text_color = null;
 $btn_color = null;
@@ -120,12 +121,18 @@ if (isset($_GET['job_id'])) {
             !important;
     }
 
-    .btn_color_2 {
+    .bg_color_2 {
         background-color:
             <?= $btn_color_2; ?>
             !important;
         color:
             <?= $btn_text_color_2; ?>
+            !important;
+    }
+
+    .bg_color_3 {
+        background-color:
+            <?= $bg_color_3; ?>
             !important;
     }
 </style>
@@ -146,7 +153,7 @@ if (isset($_GET['job_id'])) {
         <div class="heading-container">
             <div class="application-form-header d-flex justify-content-between align-items-center">
                 <h1 class="text-uppercase text_color"><?php echo $row['job_title']; ?></h1>
-                <a href="#apply" class="btn btn-primary text-white apply-btn btn_color text_color">APPLY</a>
+                <a href="#apply" class="btn btn-primary text-white apply-btn btn_color text_color">APPLY</a>    
             </div>
         </div>
 
@@ -165,24 +172,24 @@ if (isset($_GET['job_id'])) {
             <!-- Job Summary -->
             <div class="mb-4">
                 <h3 class="filter-label text_color">Job Summary</h3>
-                <div class="job-content text_color_2"><?php echo $row['job_summary']; ?></div>
+                <div class="job-content text_color_2 bg_color_3"><?php echo $row['job_summary']; ?></div>
             </div>
 
             <!-- Job Responsibilities -->
             <div class="mb-4">
                 <h3 class="filter-label text_color">Responsibilities</h3>
-                <div class="job-content text_color_2"><?php echo $row['job_responsibility']; ?></div>
+                <div class="job-content text_color_2 bg_color_3"><?php echo $row['job_responsibility']; ?></div>
             </div>
 
             <!-- Job Requirements -->
             <div class="mb-4">
                 <h3 class="filter-label text_color">Job Requirement</h3>
-                <div class="job-content text_color_2"><?php echo $row['job_requirements']; ?></div>
+                <div class="job-content text_color_2 bg_color_3"><?php echo $row['job_requirements']; ?></div>
             </div>
         </div>
 
         <!-- Application Form Section -->
-        <div class="application-form-container">
+        <div class="application-form-container" id="apply">
             <h2 class="application-form-heading mb-4 text_color">Apply for this job</h2>
 
             <div class="bg-white rounded-3 p-4  bg_color_2">

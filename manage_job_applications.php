@@ -151,6 +151,9 @@ if (isset($_GET['id'])) {
                                             <option value="NEW" <?php echo ($application['status'] == 'NEW') ? 'selected' : ''; ?>>NEW</option>
                                             <option value="PENDING" <?php echo ($application['status'] == 'PENDING') ? 'selected' : ''; ?>>PENDING</option>
                                             <option value="OPENED" <?php echo ($application['status'] == 'OPENED') ? 'selected' : ''; ?>>OPENED</option>
+                                            <option value="SHORTLISTED" <?php echo ($application['status'] == 'SHORTLISTED') ? 'selected' : ''; ?>>SHORTLISTED</option>
+                                            <option value="REJECTED" <?php echo ($application['status'] == 'REJECTED') ? 'selected' : ''; ?>>REJECTED</option>
+                                            <option value="HIRED" <?php echo ($application['status'] == 'HIRED') ? 'selected' : ''; ?>>HIRED</option>
                                         </select>
 
 
