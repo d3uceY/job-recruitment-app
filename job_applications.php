@@ -87,8 +87,6 @@ include 'includes/protect.inc.php';
                                         $result = mysqli_query($conn, $sql);
 
 
-
-
                                         while ($row = mysqli_fetch_assoc($result)) {
 
 
@@ -128,8 +126,9 @@ include 'includes/protect.inc.php';
                                             // Display the manage button and view cv button
                                             echo "<td class=''>
                                                 <a href='manage_job_applications.php?id=" . $row['id'] . "' class='btn btn-sm btn-primary'>Manage</a>
-                                                <a href='uploads/resumes/" . $row['resume_path'] . "' target='_blank' class='btn btn-sm btn-info'>View CV</a>
-                                            </td>";
+                                                <a href='uploads/resumes/" . $row['resume_path'] . "' target='_blank' class='btn btn-sm btn-info mt-2 text-white'>View CV</a> " .
+                                               ($row['cover_letter_path'] == 0 || '0' ? '' : ' <a href="uploads/cover_letters/' . $row['cover_letter_path'] . '" target="_blank" class="btn btn-sm btn-info mt-2 text-white">View Cover Letter</a>') .
+                                                "</td>";
                                             echo "</tr>";
                                         }
                                         ?>

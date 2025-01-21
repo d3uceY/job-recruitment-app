@@ -25,7 +25,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
 $master_data_pages = [
     'locations.php',
     'educational_level.php',
-    'industry.php'
+    'industry.php',
+    'manage_referrals.php'
 ];
 
 
@@ -37,7 +38,7 @@ $job_openings_pages = [
 
 
 
-$applications_pages = [ 
+$applications_pages = [
     'job_applications.php',
     'query_applications.php'
 ];
@@ -56,9 +57,11 @@ $applications_active = in_array($current_page, $applications_pages);
 // Check if the current page is active
 $locations_page_active = $current_page == 'locations.php';
 
+$referrals_page_active = $current_page == 'manage_referrals.php';
+
 $educational_level_page_active = $current_page == 'educational_level.php';
 
-$industry_page_active = $current_page == 'industry.php'; 
+$industry_page_active = $current_page == 'industry.php';
 
 $view_jobs_page_active = $current_page == 'view_jobs.php';
 
@@ -102,45 +105,52 @@ $dashboard_page_active = $current_page == 'index.php';
                 <i class="fa fa-tachometer-alt me-2"></i>Dashboard
             </a>
 
-            <div class="nav-item dropdown" >
+            <div class="nav-item dropdown">
 
 
                 <a href="#" class="nav-link dropdown-toggle <?php echo $master_data_active ? "active show" : ''; ?>"
-
-
                     data-bs-toggle="dropdown">
                     <i class="fa fa-database me-2"></i>Master Data
                 </a>
 
 
-                <div class="dropdown-menu bg-transparent border-0 <?php echo $master_data_active ? "show" : ''; ?>" <?php echo $master_data_active ? "data-bs-popper='none'" : ''; ?>>
+                <div class="dropdown-menu bg-transparent border-0 <?php echo $master_data_active ? "show" : ''; ?>"
+                    <?php echo $master_data_active ? "data-bs-popper='none'" : ''; ?>>
 
-                    <a href="locations.php" class="dropdown-item <?php echo $locations_page_active ? 'active' : ''; ?>">Locations</a>
+                    <a href="locations.php"
+                        class="dropdown-item <?php echo $locations_page_active ? 'active' : ''; ?>">Locations</a>
 
-                    <a href="educational_level.php" class="dropdown-item <?php echo $educational_level_page_active ? 'active' : ''; ?>">Educational Levels</a>
+                    <a href="educational_level.php"
+                        class="dropdown-item <?php echo $educational_level_page_active ? 'active' : ''; ?>">Educational
+                        Levels</a>
 
-                    <a href="industry.php" class="dropdown-item <?php echo $industry_page_active ? 'active' : ''; ?>">Industry Categories</a>
+                    <a href="industry.php"
+                        class="dropdown-item <?php echo $industry_page_active ? 'active' : ''; ?>">Industry
+                        Categories</a>
 
+                    <a href="manage_referrals.php"
+                        class="dropdown-item <?php echo $referrals_page_active ? 'active' : ''; ?>">Manage Referrals</a>
 
                 </div>
             </div>
 
-            <div class="nav-item dropdown " >
+            <div class="nav-item dropdown ">
 
 
                 <a href="#" class="nav-link dropdown-toggle <?php echo $job_openings_active ? 'active show' : ''; ?>"
-
-
                     data-bs-toggle="dropdown">
                     <i class="fa fa-briefcase me-2"></i>Job Openings
                 </a>
 
 
-                <div class="dropdown-menu bg-transparent border-0 <?php echo $job_openings_active ? "show" : ''; ?>" <?php echo $job_openings_active ? "data-bs-popper='none'" : ''; ?>>
+                <div class="dropdown-menu bg-transparent border-0 <?php echo $job_openings_active ? "show" : ''; ?>"
+                    <?php echo $job_openings_active ? "data-bs-popper='none'" : ''; ?>>
 
-                    <a href="view_jobs.php" class="dropdown-item <?php echo $view_jobs_page_active ? 'active' : ''; ?>">Job Openings</a>
+                    <a href="view_jobs.php"
+                        class="dropdown-item <?php echo $view_jobs_page_active ? 'active' : ''; ?>">Job Openings</a>
 
-                    <a href="add-jobs.php" class="dropdown-item <?php echo $add_jobs_page_active ? 'active' : ''; ?>">Add Job Opening</a>
+                    <a href="add-jobs.php"
+                        class="dropdown-item <?php echo $add_jobs_page_active ? 'active' : ''; ?>">Add Job Opening</a>
 
 
                 </div>
@@ -149,20 +159,24 @@ $dashboard_page_active = $current_page == 'index.php';
             <div class="nav-item dropdown">
 
 
-                <a href="#" class="nav-link dropdown-toggle <?php echo $applications_active ? 'active show' : ''; ?>" data-bs-toggle="dropdown">
+                <a href="#" class="nav-link dropdown-toggle <?php echo $applications_active ? 'active show' : ''; ?>"
+                    data-bs-toggle="dropdown">
 
 
                     <i class="fa fa-file-alt me-2"></i>Applications
                 </a>
 
 
-                <div class="dropdown-menu bg-transparent border-0 <?php echo $applications_active ? "show" : ''; ?>" <?php echo $applications_active ? "data-bs-popper='none'" : ''; ?>>
+                <div class="dropdown-menu bg-transparent border-0 <?php echo $applications_active ? "show" : ''; ?>"
+                    <?php echo $applications_active ? "data-bs-popper='none'" : ''; ?>>
 
-                    <a href="job_applications.php" class="dropdown-item <?php echo $job_applications_page_active ? 'active' : ''; ?>">Job Applications</a>
+                    <a href="job_applications.php"
+                        class="dropdown-item <?php echo $job_applications_page_active ? 'active' : ''; ?>">Job
+                        Applications</a>
 
-                 
 
-                    
+
+
                 </div>
             </div>
 
@@ -188,7 +202,7 @@ $dashboard_page_active = $current_page == 'index.php';
                     <a href="404.php" class="dropdown-item">404 Error</a>
                     <a href="blank.php" class="dropdown-item">Blank Page</a>
                 </div> -->
-            </div>
         </div>
-    </nav>
+</div>
+</nav>
 </div>

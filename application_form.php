@@ -106,7 +106,8 @@ if (isset($_GET['job_id'])) {
             !important;
     }
 
-    .text_color_2, .text_color_2 * {
+    .text_color_2,
+    .text_color_2 * {
         color:
             <?= $text_color_2; ?>
             !important;
@@ -146,14 +147,20 @@ if (isset($_GET['job_id'])) {
         if (isset($_GET['status'])): ?>
             <div class="alert alert-<?php echo $_GET['status'] == 'success' ? 'success' : 'danger'; ?> mt-3">
                 <?php echo $_GET['status'] == 'success' ? 'Application submitted successfully!' : urldecode($_GET['message']); ?>
-            </div>  
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['message'])): ?>
+            <div class="alert alert-danger mt-3">
+                <?php echo urldecode($_GET['message']); ?>
+            </div>
         <?php endif; ?>
 
         <!-- Job Title Header -->
         <div class="heading-container">
             <div class="application-form-header d-flex justify-content-between align-items-center">
                 <h1 class="text-uppercase text_color"><?php echo $row['job_title']; ?></h1>
-                <a href="#apply" class="btn btn-primary text-white apply-btn btn_color text_color">APPLY</a>    
+                <a href="#apply" class="btn btn-primary text-white apply-btn btn_color text_color">APPLY</a>
             </div>
         </div>
 
@@ -268,6 +275,28 @@ if (isset($_GET['job_id'])) {
                             </div>
                         </div>
 
+                        <!-- referrals -->
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <select class="form-control" id="referrals" name="referrals" required>
+                                    <option value="">Select Referral</option>
+
+                                    <?php
+                                    // Fetch and display educational levels from database
+                                    $referrals_query = "SELECT * FROM referrals";
+                                    $referrals_result = mysqli_query($conn, $referrals_query);
+
+                                    while ($referrals_row = mysqli_fetch_assoc($referrals_result)) {
+                                        echo '<option value="' . $referrals_row['id'] . '">' . $referrals_row['referral'] . '</option>';
+                                    }
+                                    ?>
+
+                                </select>
+                                <label for="referrals">Referrals</label>
+                            </div>
+                        </div>
+
+
                         <!-- Industry Experience -->
                         <div class="col-md-12">
                             <div class="form-floating">
@@ -359,11 +388,12 @@ if (isset($_GET['job_id'])) {
 
 
 
-                    <!-- Cover Letter Section -->
-                    <div class="form-floating mb-4">
-                        <textarea class="form-control" id="coverLetter" name="coverLetter" placeholder="Cover Letter"
-                            style="height: 200px" required></textarea>
-                        <label for="coverLetter">Cover Letter</label>
+                    <!-- Resume Upload Section -->
+                    <div class="mb-4">
+                        <label for="coverLetter" class="form-label">Upload Cover Letter</label>
+                        <input class="form-control" type="file" id="coverLetter" name="cover_letter"
+                            accept=".pdf,.doc,.docx">
+                        <div class="form-text">Accepted formats: PDF, DOC, DOCX. Max size: 2MB</div>
                     </div>
 
                     <!-- Resume Upload Section -->

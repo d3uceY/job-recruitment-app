@@ -138,11 +138,10 @@ The application uses MySQL with the following key tables:
 - `locations` - Location master data
 - `industry_category` - Industry types
 - `educational_level` - Education standards
-
-
+- `referrals` - Referral master data
 
 ### Customization
-these are the url query parameters that are used to customize the application:
+these are the url query parameters that are used to customize the application in career.php:
 - `text_color` - Text color
 - `btn_color` - Button color
 - `btn_text_color` - Button text color

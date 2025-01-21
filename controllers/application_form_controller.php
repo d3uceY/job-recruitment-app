@@ -123,6 +123,12 @@ if (isset($_POST['submit'])) {
         $errors[] = "Industry is required";
     }
 
+    //validate referral
+    $referral = filter_var($_POST['referrals'], FILTER_VALIDATE_INT);
+    if ($referral === false || $referral <= 0) {
+        $errors[] = "Invalid referral selected";
+    }
+
 
 
     // Validate years of experience
@@ -140,12 +146,6 @@ if (isset($_POST['submit'])) {
     }
 
 
-
-    // Validate cover letter
-    $coverLetter = sanitizeInput($_POST['coverLetter']);
-    if (empty($coverLetter)) {
-        $errors[] = "Cover letter is required";
-    }
 
 
 
@@ -215,6 +215,47 @@ if (isset($_POST['submit'])) {
     }
 
 
+
+
+    // Handle cover letter file upload
+    $uploadCoverLetterDir = '../uploads/cover-letter/';
+    $coverLetterPath = '';
+
+    if (isset($_FILES['cover_letter']) && $_FILES['cover_letter']['error'] === UPLOAD_ERR_OK) {
+        // Generate unique filename for cover letter
+        $fileExtension = pathinfo($_FILES['cover_letter']['name'], PATHINFO_EXTENSION);
+        $fileName = uniqid('cover_letter_') . '.' . $fileExtension;
+        $targetPath = $uploadCoverLetterDir . $fileName;
+
+
+
+        // Validate file type (PDF, DOC, DOCX only)
+        $allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        if (!in_array($_FILES['cover_letter']['type'], $allowedTypes)) {
+            header('location:../career.php?status=error&message=' . urlencode('Invalid file type. Only PDF and DOC files are allowed.'));
+            exit();
+        }
+
+
+
+        // Validate file size (max 2MB)
+        if ($_FILES['cover_letter']['size'] > 2 * 1024 * 1024) {
+            header('location:../career.php?status=error&message=' . urlencode('File is too large. Maximum size is 2MB.'));
+            exit();
+        }
+
+
+
+        // Move uploaded file to target directory
+        if (move_uploaded_file($_FILES['cover_letter']['tmp_name'], $targetPath)) {
+            $coverLetterPath = $fileName;
+        } else {
+            header('location:../career.php?status=error&message=' . urlencode('Failed to upload file.'));
+            exit();
+        }
+    }
+
+
     // Verify database connection
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
@@ -222,37 +263,53 @@ if (isset($_POST['submit'])) {
 
 
     // Prepare and execute database insert query
-    $query = "INSERT INTO job_applications (job_id, first_name, last_name, email, phone, address, education, industry, 
-              experience, expected_salary, cover_letter, resume_path, application_date, preferred_location, status) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?)";
+    $query = "INSERT INTO job_applications (
+    job_id, 
+    first_name, 
+    last_name, 
+    email, 
+    phone, 
+    address, 
+    education, 
+    industry, 
+    experience, 
+    expected_salary, 
+    resume_path,
+    application_date,
+    preferred_location,
+    status,
+    referral_id,
+    cover_letter_path
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?, ?)";
 
 
 
     $stmt = $conn->prepare($query);
 
     $stmt->bind_param(
-        "isssssssidssss",
-        $job_id,
-        $firstName,
-        $lastName,
-        $email,
-        $phone,
-        $address,
-        $education,
-        $industry,
-        $experience,
-        $salary,
-        $coverLetter,
-        $resumePath,
-        $preferred_location,
-        $status
+        "isssssssidssssi",  // 15 parameters (i=int, s=string, d=decimal)
+        $job_id,            // i
+        $firstName,         // s
+        $lastName,         // s
+        $email,            // s
+        $phone,            // s
+        $address,          // s
+        $education,        // s
+        $industry,         // s
+        $experience,       // i
+        $salary,           // d
+        $resumePath,       // s
+        $preferred_location, // s
+        $status,           // s
+        $referral,         // i
+        $coverLetterPath    // s
     );
 
 
 
     // Execute query and handle result
     if ($stmt->execute()) {
-        header('location:../career.php?status=success');
+        header('location:../career.php?status=success&message= ' . $referral . '. ');
         exit();
     } else {
         header('location:../career.php?status=error&message=' . urlencode('Failed to submit application: ' . $conn->error));
