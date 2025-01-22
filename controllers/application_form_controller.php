@@ -11,7 +11,7 @@ if (!isset($_POST['submit'])) {
 $errors = [];
 
 //application status
-$status = "New";
+$status = "NEW";
 
 /**
  * Validates email address format
