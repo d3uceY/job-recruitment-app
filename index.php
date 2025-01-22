@@ -137,7 +137,7 @@
                             $applicant_count = $row['applicant_count'];
                             ?>
 
-                            <div class="col-sm-3 col-sm-3">
+                            <div class="col-sm-4 col-md-3">
                                 <div class="bg-light rounded h-100 p-4">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
                                         <h6 class="mb-0"><?php echo $referral; ?></h6>
