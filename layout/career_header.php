@@ -28,6 +28,9 @@
     <!-- Career Stylesheet -->
     <link rel="stylesheet" href="css/career.css">
 
+    <!-- tailwind cdn -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    
     <!-- stylesheet for web application form -->
     <link rel="stylesheet" href="css/style.css">
 </head>

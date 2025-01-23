@@ -64,9 +64,8 @@ if (isset($_GET['bg_color_3'])) {
 
 
 <body style="background-color: <?php echo $bg_color; ?> !important; color: <?php echo $text_color; ?> !important">
-
+    <?php include("layout/career_nav.php"); ?>
     <main>
-
         <?php
         // Show success/error message if status is set
         if (isset($_GET['status'])): ?>
@@ -82,7 +81,7 @@ if (isset($_GET['bg_color_3'])) {
         <div class="wrapper">
             <!-- Main heading -->
             <div class="heading-container">
-                <h1 class=" text-uppercase" <?= $text_color ? "style='color: {$text_color} !important'" : '' ?>>Career
+                <h1 class=" text-center" <?= $text_color ? "style='color: {$text_color} !important'" : '' ?>>Career
                     Opportunities</h1>
             </div>
 
@@ -237,7 +236,7 @@ if (isset($_GET['bg_color_3'])) {
 
 
                 //display join our talent community button
-                echo '<a class="btn btn-primary text-white apply-btn" href="talent_hunt.php?' .
+                echo '<a class="" href="talent_hunt.php?' .
                     (isset($text_color) ? '&text_color=' . urlencode($text_color) : '') .
                     (isset($bg_color) ? '&bg_color=' . urlencode($bg_color) : '') .
                     (isset($bg_color_2) ? '&bg_color_2=' . urlencode($bg_color_2) : '') .
@@ -247,8 +246,9 @@ if (isset($_GET['bg_color_3'])) {
                     '&btn_color=' . urlencode($btn_color) . '" ' . ($btn_text_color || $btn_color ? "style='background-color: {$btn_color} !important; color: {$btn_text_color} !important'" : '') . '>Join our talent community</a>';
 
                 ?>
-
+                 
             </div>
         </div>
     </main>
+    <?php include("layout/career_footer.php"); ?>
 </body>
