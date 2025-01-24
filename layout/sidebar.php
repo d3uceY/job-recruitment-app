@@ -40,7 +40,10 @@ $job_openings_pages = [
 
 $applications_pages = [
     'job_applications.php',
-    'query_applications.php'
+    'query_applications.php',
+    'talent_hunt_applications.php',
+    'manage_talent_hunt_application.php',
+    'manage_job_applications.php'
 ];
 
 // Check if the current page is in the active pages array
@@ -67,11 +70,13 @@ $view_jobs_page_active = $current_page == 'view_jobs.php';
 
 $add_jobs_page_active = $current_page == 'add-jobs.php';
 
-$job_applications_page_active = $current_page == 'job_applications.php';
+$job_applications_page_active = $current_page == 'job_applications.php' || $current_page == 'manage_job_applications.php';
 
 $query_applications_page_active = $current_page == 'query_applications.php';
 
 $dashboard_page_active = $current_page == 'index.php';
+
+$talent_hunt_page_active = $current_page == "talent_hunt_applications.php" || $current_page == "manage_talent_hunt_application.php";
 ?>
 
 <div class="sidebar pe-4 pb-3">
@@ -173,6 +178,10 @@ $dashboard_page_active = $current_page == 'index.php';
                     <a href="job_applications.php"
                         class="dropdown-item <?php echo $job_applications_page_active ? 'active' : ''; ?>">Job
                         Applications</a>
+
+                    <a href="talent_hunt_applications.php"
+                        class="dropdown-item <?php echo $talent_hunt_page_active ? 'active' : ''; ?>">Talent
+                        Hunt</a>
 
 
 

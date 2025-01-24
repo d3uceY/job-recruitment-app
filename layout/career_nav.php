@@ -1,5 +1,5 @@
 <nav class="!bg-[#FAFAFA]">
-    <div class="career-nav mx-auto flex justify-between items-center !py-6 !container">
+    <div class="career-nav mx-auto flex justify-between items-center !py-6 container">
         <div>
             <img class="h-[25px]" src="https://bankitafrica.com/_next/static/media/Bankit-Logo-v2-cropped.9a7bc060.png"
                 alt="logo">

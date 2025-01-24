@@ -1,5 +1,5 @@
 <footer class="career-footer bg-[#FAFAFA] md:!py-24 !py-12 !px-4">
-    <div class="!container mx-auto">
+    <div class="container mx-auto">
 
         <div class="flex justify-between items-center md:!pb-14 !pb-8  border-b-[1px] border-[#EBEBEB]">
             <div>

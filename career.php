@@ -78,80 +78,83 @@ if (isset($_GET['bg_color_3'])) {
         <?php endif;
         ?>
 
-        <div class="wrapper">
+        <div class="wrapper !px-4">
             <!-- Main heading -->
-            <div class="heading-container">
+            <div class="heading-container !pt-12 !pb-8">
                 <h1 class=" text-center" <?= $text_color ? "style='color: {$text_color} !important'" : '' ?>>Career
                     Opportunities</h1>
             </div>
 
             <!-- Filter form -->
-            <form class="filter d-flex justify-content-between align-items-center py-4 px-3 rounded-3" method="GET"
-                <?= $bg_color_2 ? "style='background-color: {$bg_color_2} !important'" : '' ?>>
+            <form
+                class="filter d-flex md:flex-row flex-col !mb-[3rem] md:!mb-[5rem] justify-content-between align-items-center py-4 px-3 rounded-3"
+                method="GET" <?= $bg_color_2 ? "style='background-color: {$bg_color_2} !important'" : '' ?>>
 
-                <p class="flex-1 mb-0 filter-label" <?= $text_color ? "style='color: {$text_color} !important'" : '' ?>>
+                <p class="flex-1 mb-0 filter-label !text-[1.2rem] font-bold" <?= $text_color ? "style='color: {$text_color} !important'" : '' ?>>
                     Filter by:</p>
+                <div class="max-w-[500px] w-full">
 
-                <div class="d-flex justify-content-between  flex-2">
-                    <!-- hidden inputs holding customization values -->
-                    <input type="hidden" name="text_color" value="<?= $text_color ?>">
-                    <input type="hidden" name="bg_color" value="<?= $bg_color ?>">
-                    <input type="hidden" name="bg_color_2" value="<?= $bg_color_2 ?>">
-                    <input type="hidden" name="text_color_2" value="<?= $text_color_2 ?>">
-                    <input type="hidden" name="btn_text_color" value="<?= $btn_text_color ?>">
-                    <input type="hidden" name="btn_color" value="<?= $btn_color ?>">
-                    <input type="hidden" name="bg_color_3" value="<?= $bg_color_3 ?>">
+                    <div class="d-flex w-full justify-between gap-6 !ml-auto">
+                        <!-- hidden inputs holding customization values -->
+                        <input type="hidden" name="text_color" value="<?= $text_color ?>">
+                        <input type="hidden" name="bg_color" value="<?= $bg_color ?>">
+                        <input type="hidden" name="bg_color_2" value="<?= $bg_color_2 ?>">
+                        <input type="hidden" name="text_color_2" value="<?= $text_color_2 ?>">
+                        <input type="hidden" name="btn_text_color" value="<?= $btn_text_color ?>">
+                        <input type="hidden" name="btn_color" value="<?= $btn_color ?>">
+                        <input type="hidden" name="bg_color_3" value="<?= $bg_color_3 ?>">
 
-                    <!-- Location filter dropdown -->
-                    <select name="filter" id="filter" class="filter-select" <?= $text_color || $bg_color_2 ? "style='color: {$text_color} !important; background-color: {$bg_color_2} !important'" : '' ?>>
-                        <option value="locations">All
-                            Locations
-                        </option>
+                        <!-- Location filter dropdown -->
+                        <select name="filter" id="filter" class="filter-select !text-[1rem]" <?= $text_color || $bg_color_2 ? "style='color: {$text_color} !important; background-color: {$bg_color_2} !important'" : '' ?>>
+                            <option value="locations">All
+                                Locations
+                            </option>
 
-                        <?php
-                        // Fetch all locations from the database and populate dropdown
-                        $query = "SELECT * FROM locations";
-                        $result = mysqli_query($conn, $query);
-                        while ($row = mysqli_fetch_assoc($result)) {
+                            <?php
+                            // Fetch all locations from the database and populate dropdown
+                            $query = "SELECT * FROM locations";
+                            $result = mysqli_query($conn, $query);
+                            while ($row = mysqli_fetch_assoc($result)) {
 
 
-                            // Mark currently selected location
-                            $selected = '';
-                            if (isset($_GET['filter']) && $_GET['filter'] == $row['id']) {
-                                $selected = 'selected';
+                                // Mark currently selected location
+                                $selected = '';
+                                if (isset($_GET['filter']) && $_GET['filter'] == $row['id']) {
+                                    $selected = 'selected';
+                                }
+
+                                echo '<option value="' . $row['id'] . '" ' . $selected . '>' . $row['state'] . '</option>';
+
+
                             }
+                            ?>
 
-                            echo '<option value="' . $row['id'] . '" ' . $selected . '>' . $row['state'] . '</option>';
+                        </select>
 
-
-                        }
-                        ?>
-
-                    </select>
-
-                    <!-- Sort order dropdown -->
-                    <select name="sort" id="sort" class="filter-select" <?= $text_color || $bg_color_2 ? "style='color: {$text_color} !important; background-color: {$bg_color_2} !important'" : '' ?>>
-                        <?php
-                        // Helper function to check if sort option should be selected
-                        function get_sort_option($sort_value)
-                        {
-                            if (isset($_GET['sort']) && $_GET['sort'] === $sort_value) {
-                                return 'selected';
+                        <!-- Sort order dropdown -->
+                        <select name="sort" id="sort" class="filter-select !text-[1rem]" <?= $text_color || $bg_color_2 ? "style='color: {$text_color} !important; background-color: {$bg_color_2} !important'" : '' ?>>
+                            <?php
+                            // Helper function to check if sort option should be selected
+                            function get_sort_option($sort_value)
+                            {
+                                if (isset($_GET['sort']) && $_GET['sort'] === $sort_value) {
+                                    return 'selected';
+                                }
+                                return '';
                             }
-                            return '';
-                        }
-                        ?>
+                            ?>
 
-                        <option value="DESC" <?php echo get_sort_option('DESC') ?>>DESC</option>
-                        <option value="ASC" <?php echo get_sort_option('ASC') ?>>ASC</option>
+                            <option value="DESC" <?php echo get_sort_option('DESC') ?>>DESC</option>
+                            <option value="ASC" <?php echo get_sort_option('ASC') ?>>ASC</option>
 
-                    </select>
-                    <button class="btn btn-primary text-white search-btn" <?= $btn_text_color || $btn_color ? "style='background-color: {$btn_color} !important; color: {$btn_text_color} !important'" : '' ?>>Search</button>
+                        </select>
+                        <button class="btn btn-primary text-white search-btn !text-[1rem]" <?= $btn_text_color || $btn_color ? "style='background-color: {$btn_color} !important; color: {$btn_text_color} !important'" : '' ?>>Search</button>
+                    </div>
                 </div>
             </form>
 
             <!-- Job listings section -->
-            <h2 class="job-listings-heading mb-3" <?= $text_color ? "style='color: {$text_color} !important'" : '' ?>>
+            <h2 class="job-listings-heading mb-3 !text-[1rem] !font-semibold" <?= $text_color ? "style='color: {$text_color} !important'" : '' ?>>
                 Job listings
             </h2>
 
@@ -246,7 +249,7 @@ if (isset($_GET['bg_color_3'])) {
                     '&btn_color=' . urlencode($btn_color) . '" ' . ($btn_text_color || $btn_color ? "style='background-color: {$btn_color} !important; color: {$btn_text_color} !important'" : '') . '>Join our talent community</a>';
 
                 ?>
-                 
+
             </div>
         </div>
     </main>

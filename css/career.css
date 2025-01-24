@@ -20,7 +20,7 @@ body:has(.job-details) {
 }
 
 .wrapper {
-    max-width: 750px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -67,9 +67,7 @@ select option {
 }
 
 .job-listings-heading {
-    font-size: 18px;
     color: #000;
-    font-weight: 600;
 }
 
 .job-listing {
@@ -82,14 +80,9 @@ select option {
     background-color: var(--primary-color) !important;
 }
 
-.heading-container {
-    padding-top: 5rem;
-    padding-bottom: 1rem;
-}
 
 .filter {
     background-color: var(--primary-color);
-    margin-bottom: 5rem;
 }
 
 .job-title,
@@ -138,7 +131,6 @@ select option {
 
 
 .filter-label {
-    font-size: 20px;
     color: #000;
 }
 
