@@ -239,14 +239,14 @@ if (isset($_GET['bg_color_3'])) {
 
 
                 //display join our talent community button
-                echo '<a class="" href="talent_hunt.php?' .
+                echo '<a class="btn btn-primary text-white py-2 px-4 rounded-md shadow-sm hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 !ml-auto block !w-fit" href="talent_hunt.php?' .
                     (isset($text_color) ? '&text_color=' . urlencode($text_color) : '') .
                     (isset($bg_color) ? '&bg_color=' . urlencode($bg_color) : '') .
                     (isset($bg_color_2) ? '&bg_color_2=' . urlencode($bg_color_2) : '') .
                     (isset($text_color_2) ? '&text_color_2=' . urlencode($text_color_2) : '') .
                     (isset($bg_color_3) ? '&bg_color_3=' . urlencode($bg_color_3) : '') .
                     (isset($btn_text_color) ? '&btn_text_color=' . urlencode($btn_text_color) : '') .
-                    '&btn_color=' . urlencode($btn_color) . '" ' . ($btn_text_color || $btn_color ? "style='background-color: {$btn_color} !important; color: {$btn_text_color} !important'" : '') . '>Join our talent community</a>';
+                    '&btn_color=' . urlencode($btn_color) . '" >Join our talent community</a>';
 
                 ?>
 
