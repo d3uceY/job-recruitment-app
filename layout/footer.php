@@ -3,7 +3,7 @@
     <div class="bg-light rounded-top p-4">
         <div class="row">
             <div class="col-12 col-sm-6 text-center text-sm-start">
-                &copy; <a href="#">Bank It</a>, All Right Reserved. 
+                &copy; <a href="#">Bank It</a>, All Right Reserved.
             </div>
         </div>
     </div>
@@ -50,13 +50,20 @@
         $('#myTable').DataTable({
             responsive: true
         });
+
+        $('#myTable type=[search]').off().on('input', function () {
+            var input = $(this).val();
+            if (input.length >= 1 || input.length === 0) {
+                // Trigger search if input is 1+ characters or empty
+                table.search(input).draw();
+            }
+        });
     });
 </script>
 
 <!-- DataTables JS -->
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-
 <!-- Custom Template Javascript -->
 <script src="js/main.js"></script>
 
